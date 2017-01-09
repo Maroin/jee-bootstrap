@@ -17,14 +17,24 @@ public class DraughtsImpl implements Draughts {
 
         for (int i = 0; i < 10; i++) {
 
-            ArrayList<DraughtCell> row = new ArrayList<DraughtCell>(10);;
+            ArrayList<DraughtCell> row = new ArrayList<>(10);
 
             for (int j=0;j<10;j++){
                 DraughtCell draughtCell = new DraughtCell();
-                draughtCell.setChipType(ChipType.CHIP);
-                draughtCell.setPlayer(Player.WHITE);
+
+                draughtCell.setChipType(ChipType.EMPTY);
+                draughtCell.setPlayer(null);
+
                 row.add(draughtCell);
             }
+
+            for (int j=0;j<10;j+=2){
+                DraughtCell draughtCell = row.get(j);
+
+                draughtCell.setChipType(ChipType.CHIP);
+                draughtCell.setPlayer(Player.WHITE);
+            }
+
             board.add(row);
         }
     }

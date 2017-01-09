@@ -27,11 +27,16 @@ public class DraughtsGameTest {
     @Test
     public void checkInitialBoard() throws Exception{
 
-        DraughtCell draughtCell = game.getDraughtCell(new Point(1,1));
-
+        DraughtCell draughtCell = game.getDraughtCell(new Point(0,0));
         assertThat(draughtCell).isNotNull();
 
+
+
+
         assertThat(draughtCell.getChipType()).isEqualTo(ChipType.CHIP);
+        assertThat(draughtCell.getPlayer()).isEqualTo(Player.WHITE);
+
+
 
     }
 
