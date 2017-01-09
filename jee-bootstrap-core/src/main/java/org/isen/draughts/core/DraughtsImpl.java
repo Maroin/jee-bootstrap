@@ -29,10 +29,19 @@ public class DraughtsImpl implements Draughts {
             }
 
             for (int j=0;j<10;j+=2){
-                DraughtCell draughtCell = row.get(j);
+                if (i < 4){
+                    DraughtCell draughtCell = row.get(j);
 
-                draughtCell.setChipType(ChipType.CHIP);
-                draughtCell.setPlayer(Player.WHITE);
+                    draughtCell.setChipType(ChipType.CHIP);
+                    draughtCell.setPlayer(Player.WHITE);
+                }
+                if (i > 5){
+                    DraughtCell draughtCell = row.get(j);
+
+                    draughtCell.setChipType(ChipType.CHIP);
+                    draughtCell.setPlayer(Player.BLACK);
+                }
+
             }
 
             board.add(row);

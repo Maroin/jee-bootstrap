@@ -27,14 +27,83 @@ public class DraughtsGameTest {
     @Test
     public void checkInitialBoard() throws Exception{
 
-        DraughtCell draughtCell = game.getDraughtCell(new Point(0,0));
-        assertThat(draughtCell).isNotNull();
+        /*
+        1ERE LIGNE OU LES CHAMPS SONT VIDES
+         */
+        DraughtCell draughtCellEmpty = game.getDraughtCell(new Point(0,1));
+        assertThat(draughtCellEmpty).isNotNull();
+        assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellEmpty.getPlayer()).isNull();
 
+        draughtCellEmpty = game.getDraughtCell(new Point(0,3));
+        assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellEmpty.getPlayer()).isNull();
 
+        draughtCellEmpty = game.getDraughtCell(new Point(0,5));
+        assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellEmpty.getPlayer()).isNull();
 
+        draughtCellEmpty = game.getDraughtCell(new Point(0,7));
+        assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellEmpty.getPlayer()).isNull();
 
-        assertThat(draughtCell.getChipType()).isEqualTo(ChipType.CHIP);
-        assertThat(draughtCell.getPlayer()).isEqualTo(Player.WHITE);
+        draughtCellEmpty = game.getDraughtCell(new Point(0,9));
+        assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellEmpty.getPlayer()).isNull();
+
+        /*
+        1ERE LIGNE OU LES PIONS SONT BLANCS
+         */
+
+        DraughtCell whiteCell = game.getDraughtCell(new Point(0,0));
+        assertThat(whiteCell).isNotNull();
+
+        assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        assertThat(whiteCell.getPlayer()).isEqualTo(Player.WHITE);
+
+        whiteCell = game.getDraughtCell(new Point(0,2));
+        assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        assertThat(whiteCell.getPlayer()).isEqualTo(Player.WHITE);
+
+        whiteCell = game.getDraughtCell(new Point(0,4));
+        assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        assertThat(whiteCell.getPlayer()).isEqualTo(Player.WHITE);
+
+        whiteCell = game.getDraughtCell(new Point(0,6));
+        assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        assertThat(whiteCell.getPlayer()).isEqualTo(Player.WHITE);
+
+        whiteCell = game.getDraughtCell(new Point(0,8));
+        assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        assertThat(whiteCell.getPlayer()).isEqualTo(Player.WHITE);
+
+        /*
+        LIGNE DU MILIEUX VIDES
+         */
+        DraughtCell draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,0));
+        assertThat(draughtCellMiddleEmpty).isNotNull();
+        assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
+
+        draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,1));
+        assertThat(draughtCellMiddleEmpty).isNotNull();
+        assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
+
+        draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,2));
+        assertThat(draughtCellMiddleEmpty).isNotNull();
+        assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
+
+        draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,3));
+        assertThat(draughtCellMiddleEmpty).isNotNull();
+        assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
+
+        draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,4));
+        assertThat(draughtCellMiddleEmpty).isNotNull();
+        assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
 
 
