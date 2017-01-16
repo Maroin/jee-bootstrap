@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.isen.draughts.core.Player.BLACK;
 import static org.isen.draughts.core.Player.WHITE;
 
 /**
@@ -53,7 +54,7 @@ public class DraughtsGameTest {
         assertThat(draughtCellEmpty.getPlayer()).isNull();
 
         /*
-        1ERE LIGNE OU LES PIONS SONT BLANCS
+        1ERE LIGNE OU LES PIONS SONT BLANCS ET NOIR
          */
 
         DraughtCell whiteCell = game.getDraughtCell(new Point(0,0));
@@ -66,37 +67,34 @@ public class DraughtsGameTest {
         assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
         assertThat(whiteCell.getPlayer()).isEqualTo(WHITE);
 
-        whiteCell = game.getDraughtCell(new Point(0,4));
-        assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
-        assertThat(whiteCell.getPlayer()).isEqualTo(WHITE);
 
         whiteCell = game.getDraughtCell(new Point(0,6));
         assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
-        assertThat(whiteCell.getPlayer()).isEqualTo(WHITE);
+        assertThat(whiteCell.getPlayer()).isEqualTo(BLACK);
 
         whiteCell = game.getDraughtCell(new Point(0,8));
         assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
-        assertThat(whiteCell.getPlayer()).isEqualTo(WHITE);
+        assertThat(whiteCell.getPlayer()).isEqualTo(BLACK);
 
         /*
         LIGNE DU MILIEUX VIDES
          */
-        DraughtCell draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,0));
+        DraughtCell draughtCellMiddleEmpty = game.getDraughtCell(new Point(0,4));
         assertThat(draughtCellMiddleEmpty).isNotNull();
         assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
         assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
-        draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,1));
+        draughtCellMiddleEmpty = game.getDraughtCell(new Point(1,4));
         assertThat(draughtCellMiddleEmpty).isNotNull();
         assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
         assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
-        draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,2));
+        draughtCellMiddleEmpty = game.getDraughtCell(new Point(2,4));
         assertThat(draughtCellMiddleEmpty).isNotNull();
         assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
         assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
-        draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,3));
+        draughtCellMiddleEmpty = game.getDraughtCell(new Point(3,4));
         assertThat(draughtCellMiddleEmpty).isNotNull();
         assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
         assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();

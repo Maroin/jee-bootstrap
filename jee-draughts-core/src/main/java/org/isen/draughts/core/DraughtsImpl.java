@@ -12,40 +12,45 @@ public class DraughtsImpl implements Draughts {
 
     private List<List<DraughtCell>> board = new ArrayList<>(10);
 
-
-    DraughtsImpl(){
-
+    private void initEmptyGrid(){
         for (int i = 0; i < 10; i++) {
 
             ArrayList<DraughtCell> row = new ArrayList<>(10);
 
-            for (int j=0;j<10;j++){
-                DraughtCell draughtCell = new DraughtCell();
-
-                draughtCell.setChipType(ChipType.EMPTY);
-                draughtCell.setPlayer(null);
-
+            for (int j = 0; j < 10; j++) {
+                CellColor color  = CellColor.BLACK;
+                if((i*10 + j)%2 == 0){
+                    color = CellColor.WHITE;
+                }
+                DraughtCell draughtCell = new DraughtCell(null,ChipType.EMPTY,color);
                 row.add(draughtCell);
             }
+            board.add(row);
+        }
+    }
+    DraughtsImpl(){
+        initEmptyGrid();
 
-            for (int j=0;j<10;j+=2){
-                if (i < 4){
-                    DraughtCell draughtCell = row.get(j);
+        for (int j = 0; j < 4; j++) {
+            for (int i = j%2; i < 10; i+=2) {
+                DraughtCell cell  = board.get(i).get(j);
+                cell.setPlayer(Player.WHITE);
+                cell.setChipType(ChipType.CHIP);
 
-                    draughtCell.setChipType(ChipType.CHIP);
-                    draughtCell.setPlayer(Player.WHITE);
-                }
-                if (i > 5){
-                    DraughtCell draughtCell = row.get(j);
+            }
+        }
 
-                    draughtCell.setChipType(ChipType.CHIP);
-                    draughtCell.setPlayer(Player.BLACK);
-                }
+        for (int j = 6; j < 10; j++) {
+                for (int i = j%2; i < 10; i+=2) {
+                    DraughtCell cell  = board.get(i).get(j);
+                    cell.setPlayer(Player.BLACK);
+                    cell.setChipType(ChipType.CHIP);
 
             }
 
-            board.add(row);
         }
+
+
     }
     @Override
     public void play(Point point, Point point1, Player colour) {
