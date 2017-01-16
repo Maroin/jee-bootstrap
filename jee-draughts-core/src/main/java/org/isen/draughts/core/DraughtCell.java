@@ -27,15 +27,15 @@ public class DraughtCell {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    void setPlayer(Player player) {
         this.player = player;
     }
 
-    public ChipType getChipType() {
+    ChipType getChipType() {
         return chipType;
     }
 
-    public void setChipType(ChipType chipType) {
+    void setChipType(ChipType chipType) {
         this.chipType = chipType;
     }
 

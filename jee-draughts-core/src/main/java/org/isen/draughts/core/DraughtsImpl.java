@@ -55,6 +55,8 @@ public class DraughtsImpl implements Draughts {
     @Override
     public void play(Point point, Point point1, Player colour) {
 
+
+
     }
 
     @Override

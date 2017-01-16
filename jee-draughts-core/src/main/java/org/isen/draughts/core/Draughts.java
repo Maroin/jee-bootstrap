@@ -15,5 +15,8 @@ public interface Draughts {
 
     ArrayList<Player> getBoard();
 
+    /*
+    return the type of Cell at a position
+     */
     DraughtCell getDraughtCell(Point point);
 }
