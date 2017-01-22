@@ -28,7 +28,7 @@ public class DraughtsImpl implements Draughts {
             board.add(row);
         }
     }
-    DraughtsImpl(){
+    public DraughtsImpl(){
         initEmptyGrid();
 
         for (int j = 0; j < 4; j++) {

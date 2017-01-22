@@ -23,9 +23,9 @@
 
     <modules>
         <module>jee-draughts-core</module>
-        <!-- module>jee-bootstrap-jpa</module>
-        <module>jee-bootstrap-web</module>
-        <module>jee-bootstrap-rest</module -->
+        <!--module>jee-bootstrap-jpa</module -->
+        <module>jee-draughts-web</module>
+        <!--module>jee-bootstrap-rest</module -->
     </modules>
 
 
