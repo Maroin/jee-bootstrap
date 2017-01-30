@@ -68,7 +68,7 @@ public class DraughtsImpl implements Draughts {
              */
 
             /*
-            Vérification des voisins pour l'obligation de manger
+            Vérification
             */
             ArrayList<Point> toColor = checkAround(point);
 

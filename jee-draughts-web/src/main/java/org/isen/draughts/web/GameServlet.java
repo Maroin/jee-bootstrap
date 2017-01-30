@@ -33,28 +33,28 @@ public class GameServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-       // String token = getTokenFromRequest(request);
-       //
-       // if (StringUtils.isEmpty(token) || request.getParameter("reset") != null) {
-       //     LOG.debug("Empty token, creating a new game");
-       //     game.createNewGame();
-       //     redirectToGameRoot(response, request);
-       // } else {
-       //     if (LOG.isDebugEnabled()) {
-       //         LOG.debug("Found token " + game.getToken() + " in request");
-       //     }
-       //     game.loadFromToken(token);
-       //
-       //     String playCol = request.getParameter("playcol");
-       //     if (playCol != null) {
-       //         game.play(Integer.parseInt(playCol));
-       //         redirectToGameRoot(response, request);
-       //     } else {
-       //         request.getRequestDispatcher("/game.jsp").include(request,
-       //                 response);
-       //     }
-       //
-       // }
+        String token = getTokenFromRequest(request);
+
+        if (StringUtils.isEmpty(token) || request.getParameter("reset") != null) {
+            LOG.debug("Empty token, creating a new game");
+            game.createNewGame();
+            redirectToGameRoot(response, request);
+        } else {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Found token " + game.getToken() + " in request");
+            }
+            game.loadFromToken(token);
+
+            String playCol = request.getParameter("playcol");
+            if (playCol != null) {
+                //game.play(Integer.parseInt(playCol));
+                redirectToGameRoot(response, request);
+            } else {
+                request.getRequestDispatcher("/game.jsp").include(request,
+                        response);
+            }
+
+        }
 
     }
 

@@ -25,11 +25,6 @@ public class DraughtsAdapter implements Draughts {
         this.game = game;
         this.coreGame = new DraughtsImpl();
 
-
-
-
-
-
     }
 
 
@@ -57,4 +52,9 @@ public class DraughtsAdapter implements Draughts {
     public DraughtCell getDraughtCell(Point point) {
         return null;
     }
+
+    public String getToken() {
+        return game.getToken();
+    }
+
 }

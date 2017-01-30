@@ -19,7 +19,14 @@ public class DraughtsDAO {
 
         Game game = new Game();
 
-
         return new DraughtsAdapter(this, game);
     };
+
+    public DraughtsAdapter loadFromToken(String token) {
+        Game game = (Game) em
+                .createQuery("SELECT g FROM Game g WHERE g.token = :token")
+                .setParameter("token", token).getSingleResult();
+
+        return new DraughtsAdapter(this, game);
+    }
 }

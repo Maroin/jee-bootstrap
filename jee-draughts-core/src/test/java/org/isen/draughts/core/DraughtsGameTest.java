@@ -114,14 +114,11 @@ public class DraughtsGameTest {
         game.play(new Point(1,3), new Point(0,4), WHITE);
 
         ArrayList<Point> dest =game.checkAround(new Point(1,3));
-
         Point point1 = new Point(0,4);
         Point point2 = new Point(2,4);
         assertThat(dest).isNotNull();
         assertThat(dest.contains(point2));
         assertThat(dest.contains(point1));
-
-
 
     }
 
