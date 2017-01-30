@@ -6,6 +6,7 @@ import org.junit.Test;
 
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.isen.draughts.core.Player.BLACK;
@@ -76,6 +77,7 @@ public class DraughtsGameTest {
         assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
         assertThat(whiteCell.getPlayer()).isEqualTo(BLACK);
 
+
         /*
         LIGNE DU MILIEUX VIDES
          */
@@ -104,14 +106,20 @@ public class DraughtsGameTest {
         assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
         assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
-
-
     }
 
     @Test
     public void aPlayerCanMove() throws Exception {
 
-        game.play(new Point(1,2), new Point(2,3), WHITE);
+        game.play(new Point(1,3), new Point(0,4), WHITE);
+
+        ArrayList<Point> dest =game.checkAround(new Point(1,3));
+
+        Point point1 = new Point(0,4);
+        Point point2 = new Point(2,4);
+        assertThat(dest).isNotNull();
+        assertThat(dest.contains(point2));
+        assertThat(dest.contains(point1));
 
 
 

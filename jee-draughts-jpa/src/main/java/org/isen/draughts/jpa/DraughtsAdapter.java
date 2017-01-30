@@ -39,6 +39,11 @@ public class DraughtsAdapter implements Draughts {
     }
 
     @Override
+    public ArrayList<Point> checkAround(Point point) {
+        return (new ArrayList<>());
+    }
+
+    @Override
     public boolean getColour() {
         return false;
     }
