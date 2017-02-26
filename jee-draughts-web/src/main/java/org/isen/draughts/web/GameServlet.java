@@ -41,7 +41,7 @@ public class GameServlet extends HttpServlet {
             redirectToGameRoot(response, request);
         } else {
             if (LOG.isDebugEnabled()) {
-                LOG.debug("Found token " + game.getToken() + " in request");
+                //LOG.debug("Found token " + game.getToken() + " in request");
             }
             game.loadFromToken(token);
 

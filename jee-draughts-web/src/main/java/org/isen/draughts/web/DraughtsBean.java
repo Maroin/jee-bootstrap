@@ -1,7 +1,8 @@
 package org.isen.draughts.web;
 
-import org.isen.draughts.jpa.DraughtsAdapter;
-import org.isen.draughts.jpa.DraughtsDAO;
+
+import org.isen.draughts.jpa.adapter.DraughtsAdapter;
+import org.isen.draughts.jpa.dao.DraughtsDAO;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ public class DraughtsBean implements Serializable {
     DraughtsDAO dao;
 
     void createNewGame(){
-        game = dao.createNewGame();
+        game = dao.createNewGame("ok","ok1");
     }
 
 
