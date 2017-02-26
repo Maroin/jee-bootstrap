@@ -7,7 +7,7 @@ import org.isen.draughts.jpa.adapter.DraughtsAdapter;
  */
 public interface DraughtsDAO {
 
-    DraughtsAdapter createNewGame();
+    DraughtsAdapter createNewGame(String player1,String player2);
 
     DraughtsAdapter loadFromToken(String token);
 }

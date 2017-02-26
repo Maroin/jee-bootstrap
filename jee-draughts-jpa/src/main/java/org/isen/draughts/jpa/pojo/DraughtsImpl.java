@@ -68,6 +68,12 @@ public class DraughtsImpl implements Draughts {
 
 
     }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
     @Override
     public void play(Point point, Point point1, Player colour) {
 

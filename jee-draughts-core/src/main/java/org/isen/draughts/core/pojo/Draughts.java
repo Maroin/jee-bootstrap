@@ -12,9 +12,14 @@ import java.util.*;
 public interface Draughts {
 
 
+
+    Long getId();
+
     void play(Point point, Point point1, Player colour);
 
     ArrayList<Point> checkAround(Point point);
+
+
 
     boolean getColour();
 

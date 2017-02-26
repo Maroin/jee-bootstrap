@@ -26,6 +26,11 @@ public class DraughtsDAOImpl implements DraughtsDAO {
         return new DraughtsAdapter(this);
     };
 
+    @Override
+    public DraughtsAdapter createNewGame(String player1, String player2) {
+        return null;
+    }
+
     public DraughtsAdapter loadFromToken(String token) {
         DraughtsImpl game = (DraughtsImpl) em
                 .createQuery("SELECT g FROM DraughtsGame g WHERE g.id = :token")
