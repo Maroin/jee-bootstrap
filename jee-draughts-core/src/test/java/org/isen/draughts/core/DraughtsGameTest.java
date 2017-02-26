@@ -1,6 +1,10 @@
 package org.isen.draughts.core;
 
 
+import org.isen.draughts.core.enums.ChipType;
+import org.isen.draughts.core.pojo.DraughtCell;
+import org.isen.draughts.core.pojo.Draughts;
+import org.isen.draughts.core.pojo.impl.DraughtsImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,8 +13,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.isen.draughts.core.Player.BLACK;
-import static org.isen.draughts.core.Player.WHITE;
+import static org.isen.draughts.core.enums.Player.BLACK;
+import static org.isen.draughts.core.enums.Player.WHITE;
 
 /**
  * Created by charles&maroin on 10/01/2016.
@@ -58,7 +62,7 @@ public class DraughtsGameTest {
         1ERE LIGNE OU LES PIONS SONT BLANCS ET NOIR
          */
 
-        DraughtCell whiteCell = game.getDraughtCell(new Point(0,0));
+        DraughtCell whiteCell = game.getDraughtCell(new Point(0,0) );
         assertThat(whiteCell).isNotNull();
 
         assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);

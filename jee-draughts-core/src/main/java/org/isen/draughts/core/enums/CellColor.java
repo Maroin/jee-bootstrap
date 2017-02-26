@@ -1,4 +1,4 @@
-package org.isen.draughts.core;
+package org.isen.draughts.core.enums;
 
 /**
  * Created by charles on 16/01/17.

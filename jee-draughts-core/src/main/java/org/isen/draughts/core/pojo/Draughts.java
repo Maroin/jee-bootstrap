@@ -1,4 +1,6 @@
-package org.isen.draughts.core;
+package org.isen.draughts.core.pojo;
+
+import org.isen.draughts.core.enums.Player;
 
 import java.awt.*;
 import java.util.ArrayList;

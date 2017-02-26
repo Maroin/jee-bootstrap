@@ -1,4 +1,8 @@
-package org.isen.draughts.core;
+package org.isen.draughts.core.pojo;
+
+import org.isen.draughts.core.enums.CellColor;
+import org.isen.draughts.core.enums.ChipType;
+import org.isen.draughts.core.enums.Player;
 
 /**
  * Created by isen on 09/01/2017.
@@ -27,15 +31,15 @@ public class DraughtCell {
         return player;
     }
 
-    void setPlayer(Player player) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 
-    ChipType getChipType() {
+    public ChipType getChipType() {
         return chipType;
     }
 
-    void setChipType(ChipType chipType) {
+    public void setChipType(ChipType chipType) {
         this.chipType = chipType;
     }
 
