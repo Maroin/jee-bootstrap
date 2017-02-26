@@ -4,7 +4,9 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import org.isen.draughts.jpa.dao.DraughtsDAO;
+import org.isen.draughts.jpa.dao.DraughtsMoveDAO;
 import org.isen.draughts.jpa.dao.impl.DraughtsDAOImpl;
+import org.isen.draughts.jpa.dao.impl.DraughtsMoveDAOImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +23,7 @@ public class H2DBModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(DraughtsDAO.class).to(DraughtsDAOImpl.class);
+        bind(DraughtsMoveDAO.class).to(DraughtsMoveDAOImpl.class);
     }
 
     @Provides

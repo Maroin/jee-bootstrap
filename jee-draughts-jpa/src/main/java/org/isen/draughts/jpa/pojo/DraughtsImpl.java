@@ -6,17 +6,16 @@ import org.isen.draughts.core.enums.Player;
 import org.isen.draughts.core.pojo.DraughtCell;
 import org.isen.draughts.core.pojo.Draughts;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.awt.*;
+import javax.persistence.*;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by maroin on 03/09/2014.
  */
-
+@NamedQueries({
+        @NamedQuery(name = "ALL_BLOG_ENTRIES", query = "FROM DraughtsGame")})
 @Entity(name = "DraughtsGame")
 public class DraughtsImpl implements Draughts {
 
@@ -27,6 +26,18 @@ public class DraughtsImpl implements Draughts {
     private String player1;
 
     private String player2;
+
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="game")
+    private List<DraughtsMoveImpl> moves;
+
+    public DraughtsImpl() {
+    }
+
+    public DraughtsImpl(String player1, String player2, List<DraughtsMoveImpl> moves) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.moves = moves;
+    }
 
     private void initEmptyGrid(){
         for (int i = 0; i < 10; i++) {
@@ -44,7 +55,9 @@ public class DraughtsImpl implements Draughts {
             board.add(row);
         }
     }
-    public DraughtsImpl(){
+    public DraughtsImpl(String player1, String player2){
+        this.player1 = player1;
+        this.player2 = player2;
         initEmptyGrid();
 
         for (int j = 0; j < 4; j++) {
@@ -101,5 +114,13 @@ public class DraughtsImpl implements Draughts {
 
 
         return board.get(point.x).get(point.y);
+    }
+
+    public List<DraughtsMoveImpl> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(List<DraughtsMoveImpl> moves) {
+        this.moves = moves;
     }
 }

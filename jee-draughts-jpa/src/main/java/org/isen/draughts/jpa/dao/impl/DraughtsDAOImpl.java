@@ -19,17 +19,14 @@ public class DraughtsDAOImpl implements DraughtsDAO {
     @Inject
     UserTransaction ut;
 
-    public DraughtsAdapter createNewGame(){
+    @Override
+    public DraughtsAdapter createNewGame(String player1,String player2){
 
-        DraughtsImpl game = new DraughtsImpl();
+        DraughtsImpl game = new DraughtsImpl(player1, player2);
 
         return new DraughtsAdapter(this);
     };
 
-    @Override
-    public DraughtsAdapter createNewGame(String player1, String player2) {
-        return null;
-    }
 
     public DraughtsAdapter loadFromToken(String token) {
         DraughtsImpl game = (DraughtsImpl) em
