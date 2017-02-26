@@ -1,4 +1,4 @@
-package org.isen.draughts.core.pojo.impl;
+package org.isen.draughts.jpa.pojo;
 
 import org.isen.draughts.core.enums.CellColor;
 import org.isen.draughts.core.enums.ChipType;
@@ -6,6 +6,9 @@ import org.isen.draughts.core.enums.Player;
 import org.isen.draughts.core.pojo.DraughtCell;
 import org.isen.draughts.core.pojo.Draughts;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +16,17 @@ import java.util.List;
 /**
  * Created by maroin on 03/09/2014.
  */
+
+@Entity(name = "DraughtsGame")
 public class DraughtsImpl implements Draughts {
 
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    private List<List<DraughtCell>> board = new ArrayList<>(10);
+    private String player1;
+
+    private String player2;
 
     private void initEmptyGrid(){
         for (int i = 0; i < 10; i++) {

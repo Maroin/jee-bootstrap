@@ -1,33 +1,29 @@
-package org.isen.draughts.jpa;
+package org.isen.draughts.jpa.adapter;
 
-import org.isen.draughts.core.DraughtCell;
-import org.isen.draughts.core.Draughts;
-import org.isen.draughts.core.DraughtsImpl;
-import org.isen.draughts.core.Player;
 
-import java.awt.*;
-import java.util.ArrayList;
+import org.isen.draughts.core.pojo.Draughts;
+import org.isen.draughts.jpa.dao.impl.DraughtsDAOImpl;
+import org.isen.draughts.jpa.pojo.DraughtsImpl;
 
 /**
  * Created by maroin on 22/01/17.
  */
-public class DraughtsAdapter implements Draughts {
+public class DraughtsAdapter {
 
-    private Game game;
 
     private Draughts coreGame;
 
-    private DraughtsDAO dao;
+    private DraughtsDAOImpl dao;
 
 
-    public DraughtsAdapter(DraughtsDAO draughtsDAO, Game game) {
+    public DraughtsAdapter(DraughtsDAOImpl draughtsDAO) {
         this.dao = dao;
-        this.game = game;
         this.coreGame = new DraughtsImpl();
 
     }
 
 
+/*
     @Override
     public void play(Point point, Point point1, Player colour) {
 
@@ -53,8 +49,6 @@ public class DraughtsAdapter implements Draughts {
         return null;
     }
 
-    public String getToken() {
-        return game.getToken();
-    }
+*/
 
 }
