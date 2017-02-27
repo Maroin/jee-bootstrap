@@ -28,7 +28,7 @@ public class DraughtsGameTest {
     @Before
     public void doBefore() throws Exception {
 
-        game = new DraughtsImpl();
+        game = new DraughtsImpl("1","2");
 
     }
 

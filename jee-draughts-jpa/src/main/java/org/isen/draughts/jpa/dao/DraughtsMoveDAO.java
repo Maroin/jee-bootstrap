@@ -12,7 +12,7 @@ import java.util.List;
 public interface DraughtsMoveDAO {
     DraughtsMove createEntry(Player player, Point origine,Point dest);
 
-    List<DraughtsMove> getBlogEntries(Long gameId);
+    List<DraughtsMove> getMoves(Long gameId);
 
     void saveEntry(DraughtsMove entry);
 
