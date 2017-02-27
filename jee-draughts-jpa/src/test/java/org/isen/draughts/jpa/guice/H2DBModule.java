@@ -1,19 +1,20 @@
 package org.isen.draughts.jpa.guice;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
 import org.isen.draughts.jpa.dao.DraughtsDAO;
 import org.isen.draughts.jpa.dao.DraughtsMoveDAO;
 import org.isen.draughts.jpa.dao.impl.DraughtsDAOImpl;
 import org.isen.draughts.jpa.dao.impl.DraughtsMoveDAOImpl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
 /**
  * Created by charles on 26/02/17.
  */
@@ -25,6 +26,7 @@ public class H2DBModule extends AbstractModule {
         bind(DraughtsDAO.class).to(DraughtsDAOImpl.class);
         bind(DraughtsMoveDAO.class).to(DraughtsMoveDAOImpl.class);
     }
+
 
     @Provides
     @Singleton
