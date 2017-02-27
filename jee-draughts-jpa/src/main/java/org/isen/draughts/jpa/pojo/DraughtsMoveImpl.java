@@ -24,7 +24,6 @@ public class DraughtsMoveImpl implements DraughtsMove {
 
 
     @ManyToOne
-    @JoinColumn(name = "game_id", nullable = false)
     private DraughtsImpl game;
 
 

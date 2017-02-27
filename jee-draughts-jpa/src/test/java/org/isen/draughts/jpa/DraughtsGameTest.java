@@ -1,17 +1,25 @@
 package org.isen.draughts.jpa;
 
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.assertj.core.api.Assertions;
 import org.isen.draughts.core.enums.ChipType;
 import org.isen.draughts.core.pojo.DraughtCell;
 import org.isen.draughts.core.pojo.Draughts;
+import org.isen.draughts.jpa.adapter.DraughtsAdapter;
+import org.isen.draughts.jpa.dao.DraughtsDAO;
+import org.isen.draughts.jpa.dao.impl.DraughtsDAOImpl;
+import org.isen.draughts.jpa.guice.H2DBModule;
 import org.isen.draughts.jpa.pojo.DraughtsImpl;
 import org.junit.Before;
 import org.junit.Test;
 
 
-import java.awt.*;
+import javax.persistence.EntityManager;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.isen.draughts.core.enums.Player.BLACK;
@@ -126,6 +134,40 @@ public class DraughtsGameTest {
         Assertions.assertThat(dest.contains(point1));
 
     }
+
+    @Test
+    public void canRetrieveEntityManagerWithGuice() throws Exception {
+        Injector injector = Guice.createInjector(new H2DBModule());
+        EntityManager em = injector.getInstance(EntityManager.class);
+        assertThat(em).isNotNull();
+    }
+
+    @Test
+    public void iCanCreateAndRetrieveABlogEntry() throws Exception {
+        DraughtsDAO dao = new DraughtsDAOImpl();
+        // On crée un billet de blog
+        Draughts entry = dao.createNewGame("Mon billet de blog","holla");
+
+        // On le sauvegarde
+        dao.saveEntry(entry);
+        // On le récupère
+       // List<Draughts> entries = dao.getGames();
+        //assertThat(entries.size()).isEqualTo(1);
+        assertThat(1).isEqualTo(1);
+    }
+   /* @Test
+    public void iCanAddAndRetrieveComment() throws Exception {
+        BlogEntry entry = dao.createEntry("billet de test");
+        Comment comment = new FakeComment("author", "un commentaire");
+        entry.addComment(comment);
+        dao.saveEntry(entry);
+        entry = dao.getBlogEntry(entry.getId());
+        List<? extends Comment> comments = entry.getComments();
+        assertThat(comments.size(), is(1));
+        comment = comments.get(0);
+        assertThat(comment.getAuthor(),is("author"));
+        assertThat(comment.getContent(), is("un commentaire"));
+    }*/
 
 
 

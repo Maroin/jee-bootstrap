@@ -11,6 +11,10 @@ import org.isen.draughts.jpa.pojo.DraughtsImpl;
 public class DraughtsAdapter {
 
 
+    public Draughts getCoreGame() {
+        return coreGame;
+    }
+
     private Draughts coreGame;
 
     private DraughtsDAOImpl dao;

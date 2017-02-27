@@ -15,9 +15,11 @@ import java.util.List;
  * Created by maroin on 03/09/2014.
  */
 @NamedQueries({
-        @NamedQuery(name = "ALL_BLOG_ENTRIES", query = "FROM DraughtsGame")})
+        @NamedQuery(name = "ALL_GAME_ENTRIES", query = "FROM DraughtsGame")})
 @Entity(name = "DraughtsGame")
 public class DraughtsImpl implements Draughts {
+
+    public static final String ALL_GAME_ENTRIES = "ALL_GAME_ENTRIES";
 
     @Id
     @GeneratedValue
