@@ -24,7 +24,6 @@ public class H2DBModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(DraughtsDAO.class).to(DraughtsDAOImpl.class);
-        bind(DraughtsMoveDAO.class).to(DraughtsMoveDAOImpl.class);
     }
 
 

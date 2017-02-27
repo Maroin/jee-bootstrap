@@ -1,7 +1,6 @@
 package org.isen.draughts.jpa.pojo;
 
 import org.isen.draughts.core.enums.Player;
-import org.isen.draughts.core.pojo.DraughtsMove;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -10,7 +9,7 @@ import java.awt.*;
  * Created by charles on 26/02/17.
  */
 @Entity(name = "DraughtsMove")
-public class DraughtsMoveImpl implements DraughtsMove {
+public class DraughtsMoveImpl {
 
     @Id
     @GeneratedValue
@@ -24,14 +23,17 @@ public class DraughtsMoveImpl implements DraughtsMove {
 
 
     @ManyToOne
-    private DraughtsImpl game;
+    private DraughtsGame game;
+
+    public DraughtsMoveImpl() {
+    }
 
 
-    public DraughtsImpl getGame() {
+    public DraughtsGame getGame() {
         return game;
     }
 
-    public void setGame(DraughtsImpl game) {
+    public void setGame(DraughtsGame game) {
         this.game = game;
     }
 
@@ -42,7 +44,7 @@ public class DraughtsMoveImpl implements DraughtsMove {
         this.dest = dest;
     }
 
-    public DraughtsMoveImpl() {
+    public DraughtsMoveImpl(Point point, Point point1, Player colour) {
     }
 
 

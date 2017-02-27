@@ -22,7 +22,7 @@ public class DraughtsMoveDAOImpl implements DraughtsMoveDAO {
 
     @Override
     public DraughtsMove createEntry(Player player, Point origine, Point dest) {
-        return new DraughtsMoveImpl(player,origine,dest);
+        return null;//new DraughtsMoveImpl(player,origine,dest);
     }
 
     @Override

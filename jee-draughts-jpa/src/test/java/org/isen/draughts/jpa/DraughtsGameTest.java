@@ -7,19 +7,23 @@ import org.assertj.core.api.Assertions;
 import org.isen.draughts.core.enums.ChipType;
 import org.isen.draughts.core.pojo.DraughtCell;
 import org.isen.draughts.core.pojo.Draughts;
+import org.isen.draughts.core.pojo.DraughtsImpl;
 import org.isen.draughts.jpa.adapter.DraughtsAdapter;
 import org.isen.draughts.jpa.dao.DraughtsDAO;
 import org.isen.draughts.jpa.dao.impl.DraughtsDAOImpl;
+import org.isen.draughts.jpa.guice.GuiceRunner;
 import org.isen.draughts.jpa.guice.H2DBModule;
-import org.isen.draughts.jpa.pojo.DraughtsImpl;
+import org.isen.draughts.jpa.guice.Modules;
+import org.isen.draughts.jpa.pojo.DraughtsGame;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.isen.draughts.core.enums.Player.BLACK;
@@ -28,6 +32,8 @@ import static org.isen.draughts.core.enums.Player.WHITE;
 /**
  * Created by charles&maroin on 10/01/2016.
  */
+@RunWith(GuiceRunner.class)
+@Modules({ H2DBModule.class })
 public class DraughtsGameTest {
 
     private Draughts game;
@@ -36,8 +42,23 @@ public class DraughtsGameTest {
     @Before
     public void doBefore() throws Exception {
 
-        game = new DraughtsImpl("1","2");
+        game = new DraughtsImpl();
 
+    }
+    @Inject
+    EntityManager em;
+
+    @Inject
+    DraughtsDAO dao;
+
+    @Test
+    public void daoIsInjected() throws Exception {
+        assertThat(dao).isNotNull();
+    }
+
+    @Test
+    public void emIsInjected() throws Exception {
+        assertThat(em).isNotNull();
     }
 
     @Test
@@ -144,12 +165,12 @@ public class DraughtsGameTest {
 
     @Test
     public void iCanCreateAndRetrieveABlogEntry() throws Exception {
-        DraughtsDAO dao = new DraughtsDAOImpl();
+
         // On crée un billet de blog
-        Draughts entry = dao.createNewGame("Mon billet de blog","holla");
+        DraughtsAdapter entry = dao.createNewGame("Mon billet de blog","holla");
 
         // On le sauvegarde
-        dao.saveEntry(entry);
+        dao.saveEntry(entry.getGame());
         // On le récupère
        // List<Draughts> entries = dao.getGames();
         //assertThat(entries.size()).isEqualTo(1);
