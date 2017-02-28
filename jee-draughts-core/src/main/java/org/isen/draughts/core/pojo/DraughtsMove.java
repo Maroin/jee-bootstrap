@@ -8,8 +8,6 @@ import java.awt.*;
  * Created by charles on 26/02/17.
  */
 public interface DraughtsMove {
-    Long getId();
-
     Player getPlayer();
     void setPlayer(Player player);
 

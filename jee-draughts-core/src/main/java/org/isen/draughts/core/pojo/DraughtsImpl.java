@@ -5,7 +5,7 @@ import org.isen.draughts.core.enums.ChipType;
 import org.isen.draughts.core.enums.Player;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by charles on 27/02/17.
@@ -73,13 +73,29 @@ public class DraughtsImpl implements Draughts {
         return false;
     }
 
+    @Override
+    public java.util.List<Point> getAllowedMoves(Point origin, Player player) {
+        return null;
+    }
+
     public ArrayList<Player> getBoard() {
         return null;
     }
+
 
     public DraughtCell getDraughtCell(Point point) {
 
 
         return board.get(point.x).get(point.y);
+    }
+
+    @Override
+    public int getColumnsNumber() {
+        return board.size();
+    }
+
+    @Override
+    public int getRowsNumber() {
+        return board.size();
     }
 }

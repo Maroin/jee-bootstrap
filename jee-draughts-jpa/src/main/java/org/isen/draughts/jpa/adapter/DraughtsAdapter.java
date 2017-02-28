@@ -10,7 +10,7 @@ import org.isen.draughts.jpa.pojo.DraughtsGame;
 import org.isen.draughts.jpa.pojo.DraughtsMoveImpl;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by maroin on 22/01/17.
@@ -80,6 +80,11 @@ public class DraughtsAdapter implements Draughts{
     }
 
     @Override
+    public java.util.List<Point> getAllowedMoves(Point origin, Player player) {
+        return null;
+    }
+
+    @Override
     public ArrayList<Player> getBoard() {
         return this.coreGame.getBoard();
     }
@@ -87,6 +92,16 @@ public class DraughtsAdapter implements Draughts{
     @Override
     public DraughtCell getDraughtCell(Point point) {
         return this.coreGame.getDraughtCell(point);
+    }
+
+    @Override
+    public int getColumnsNumber() {
+        return 0;
+    }
+
+    @Override
+    public int getRowsNumber() {
+        return 0;
     }
 }
 
