@@ -21,7 +21,7 @@ public class DraughtsColumn {
     public List<CellWrapper> getCells() {
         List<CellWrapper> cells = new ArrayList<>();
         for (int i = 0; i < game.getRowsNumber(); i++) {
-            cells.add(new CellWrapper(game.getDraughtCell(new Point(index, i))));
+            cells.add(new CellWrapper(game.getDraughtCell(new Point(i, index))));
         }
         return cells;
     }
