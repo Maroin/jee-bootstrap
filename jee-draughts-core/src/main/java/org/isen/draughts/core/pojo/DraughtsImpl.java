@@ -78,6 +78,11 @@ public class DraughtsImpl implements Draughts {
         return null;
     }
 
+    @Override
+    public Player getWinner() {
+        return null;
+    }
+
     public ArrayList<Player> getBoard() {
         return null;
     }

@@ -25,13 +25,33 @@ public class DraughtsGame {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="game")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="game", fetch=FetchType.EAGER)
     private List<DraughtsMoveImpl> moves =new ArrayList<>();
+
+
+    private String token;
+
+    private String currentTurn = Player.WHITE.toString();
 
     public DraughtsGame() {
     }
 
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+
+    }
+    public Player getCurrentTurn() {
+        return  Player.valueOf(currentTurn);
+    }
+
+    public void setCurrentTurn(Player colour) {
+        currentTurn = colour.toString();
+    }
 
     public List<DraughtsMoveImpl> getMoves() {
         return moves;
