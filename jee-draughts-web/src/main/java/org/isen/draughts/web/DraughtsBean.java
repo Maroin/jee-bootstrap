@@ -22,7 +22,7 @@ public class DraughtsBean implements Serializable {
     DraughtsDAO dao;
 
     void createNewGame(){
-        game = dao.createNewGame("ok","ok1");
+        game = dao.createNewGame();
     }
 
 

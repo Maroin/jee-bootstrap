@@ -14,8 +14,6 @@ import java.util.List;
 /**
  * Created by maroin on 03/09/2014.
  */
-@NamedQueries({
-        @NamedQuery(name = "ALL_GAME_ENTRIES", query = "FROM DraughtsGame")})
 @Entity(name = "DraughtsGame")
 public class DraughtsGame {
 

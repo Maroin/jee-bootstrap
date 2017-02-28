@@ -1,7 +1,6 @@
 package org.isen.draughts.webapp;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -53,7 +52,7 @@ public class DraughtsBean implements Serializable {
     }
 
     public void createNewGame() {
-        game = dao.createNewGame("","");
+        game = dao.createNewGame();
 
     }
 

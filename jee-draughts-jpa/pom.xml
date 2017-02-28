@@ -11,6 +11,8 @@
 
     <artifactId>jee-draughts-jpa</artifactId>
 
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>

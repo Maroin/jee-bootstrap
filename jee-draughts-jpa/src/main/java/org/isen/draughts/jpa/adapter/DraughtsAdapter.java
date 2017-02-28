@@ -103,6 +103,14 @@ public class DraughtsAdapter implements Draughts{
     public int getRowsNumber() {
         return 0;
     }
+    public String getToken() {
+        return game.getToken();
+    }
+
+    public Player getCurrentTurn() {
+        return game.getCurrentTurn();
+    }
+
 }
 
 

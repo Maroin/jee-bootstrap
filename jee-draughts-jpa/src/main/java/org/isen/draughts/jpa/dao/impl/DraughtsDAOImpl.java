@@ -23,7 +23,7 @@ public class DraughtsDAOImpl implements DraughtsDAO {
     //UserTransaction ut;
 
     @Override
-    public DraughtsAdapter createNewGame(String player1, String player2){
+    public DraughtsAdapter createNewGame(){
 
         return new DraughtsAdapter(this,new DraughtsGame());
     };
@@ -38,14 +38,12 @@ public class DraughtsDAOImpl implements DraughtsDAO {
     }
 
     @Override
-    @PostConstruct
     public List<Draughts> getGames() {
-        return em.createNamedQuery(DraughtsGame.ALL_GAME_ENTRIES)
+        return em.createQuery("SELECT * FROM DraughtsGame")
                 .getResultList();
     }
 
     @Override
-    @PostConstruct
     public void saveEntry(DraughtsGame entry) {
         EntityTransaction tx = em.getTransaction();
         tx.begin();

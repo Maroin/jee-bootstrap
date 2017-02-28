@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>jee-draughts-parent</artifactId>
         <groupId>org.isen.jee</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>jee-draughts-webapp</artifactId>
+    <packaging>war</packaging>
+    <name>Draughts :: web</name>
 
 
     <build>
-        <finalName>puissance4</finalName>
+        <finalName>Draughts</finalName>
         <plugins>
 
             <plugin>
@@ -59,43 +60,56 @@
         <dependency>
             <groupId>org.isen.jee</groupId>
             <artifactId>jee-draughts-core</artifactId>
+
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <scope>compile</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.isen.jee</groupId>
             <artifactId>jee-draughts-jpa</artifactId>
+
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
+            <groupId>org.isen.jee</groupId>
+            <artifactId>jee-draughts-rest</artifactId>
+
+            <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-support</artifactId>
-            <version>3.2.0</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
         </dependency>
         <!--       <dependency>
                    <groupId>commons-logging</groupId>
@@ -145,12 +159,5 @@
 
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>maven-restlet</id>
-            <name>Public online Restlet repository</name>
-            <url>http://maven.restlet.com</url>
-        </repository>
-    </repositories>
 
 </project>

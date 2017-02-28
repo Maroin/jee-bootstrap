@@ -23,10 +23,11 @@
 
     <modules>
         <module>jee-draughts-core</module>
-        <!--module>jee-bootstrap-jpa</module -->
-        <module>jee-draughts-web</module>
+        <!--module>jee-bootstrap-jpa</module --><!--
+        <module>jee-draughts-web</module>-->
         <module>jee-draughts-jpa</module>
         <module>jeedraughtswebapp</module>
+        <module>jee-draughts-rest</module>
         <!--module>jee-bootstrap-rest</module -->
     </modules>
 

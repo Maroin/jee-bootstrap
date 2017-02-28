@@ -11,11 +11,9 @@ import org.isen.draughts.core.pojo.Draughts;
 import org.isen.draughts.core.pojo.DraughtsImpl;
 import org.isen.draughts.jpa.adapter.DraughtsAdapter;
 import org.isen.draughts.jpa.dao.DraughtsDAO;
-import org.isen.draughts.jpa.dao.impl.DraughtsDAOImpl;
 import org.isen.draughts.jpa.guice.GuiceRunner;
 import org.isen.draughts.jpa.guice.H2DBModule;
 import org.isen.draughts.jpa.guice.Modules;
-import org.isen.draughts.jpa.pojo.DraughtsGame;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -169,7 +167,7 @@ public class DraughtsGameTest {
     public void iCanCreateAndRetrieveABlogEntry() throws Exception {
 
         // On crée un billet de blog
-        DraughtsAdapter entry = dao.createNewGame("Mon billet de blog","holla");
+        DraughtsAdapter entry = dao.createNewGame();
 
 
         // On le sauvegarde
