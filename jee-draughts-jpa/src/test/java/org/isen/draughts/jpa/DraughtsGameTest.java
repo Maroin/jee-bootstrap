@@ -3,6 +3,7 @@ package org.isen.draughts.jpa;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.isen.draughts.core.enums.ChipType;
 import org.isen.draughts.core.enums.Player;
@@ -26,14 +27,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.isen.draughts.core.enums.ChipType.*;
 import static org.isen.draughts.core.enums.Player.BLACK;
 import static org.isen.draughts.core.enums.Player.WHITE;
 
 /**
  * Created by charles&maroin on 10/01/2016.
  */
-@RunWith(GuiceRunner.class)
-@Modules({ H2DBModule.class })
+//@RunWith(GuiceRunner.class)
+//@Modules({ H2DBModule.class })
 public class DraughtsGameTest {
 
     private Draughts game;
@@ -69,23 +71,23 @@ public class DraughtsGameTest {
          */
         DraughtCell draughtCellEmpty = game.getDraughtCell(new Point(0,1));
         Assertions.assertThat(draughtCellEmpty).isNotNull();
-        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellEmpty.getPlayer()).isNull();
 
         draughtCellEmpty = game.getDraughtCell(new Point(0,3));
-        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellEmpty.getPlayer()).isNull();
 
         draughtCellEmpty = game.getDraughtCell(new Point(0,5));
-        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellEmpty.getPlayer()).isNull();
 
         draughtCellEmpty = game.getDraughtCell(new Point(0,7));
-        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellEmpty.getPlayer()).isNull();
 
         draughtCellEmpty = game.getDraughtCell(new Point(0,9));
-        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellEmpty.getPlayer()).isNull();
 
         /*
@@ -95,20 +97,20 @@ public class DraughtsGameTest {
         DraughtCell whiteCell = game.getDraughtCell(new Point(0,0) );
         Assertions.assertThat(whiteCell).isNotNull();
 
-        Assertions.assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        Assertions.assertThat(whiteCell.getChipType()).isEqualTo(CHIP);
         Assertions.assertThat(whiteCell.getPlayer()).isEqualTo(WHITE);
 
         whiteCell = game.getDraughtCell(new Point(0,2));
-        Assertions.assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        Assertions.assertThat(whiteCell.getChipType()).isEqualTo(CHIP);
         Assertions.assertThat(whiteCell.getPlayer()).isEqualTo(WHITE);
 
 
         whiteCell = game.getDraughtCell(new Point(0,6));
-        Assertions.assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        Assertions.assertThat(whiteCell.getChipType()).isEqualTo(CHIP);
         Assertions.assertThat(whiteCell.getPlayer()).isEqualTo(BLACK);
 
         whiteCell = game.getDraughtCell(new Point(0,8));
-        Assertions.assertThat(whiteCell.getChipType()).isEqualTo(ChipType.CHIP);
+        Assertions.assertThat(whiteCell.getChipType()).isEqualTo(CHIP);
         Assertions.assertThat(whiteCell.getPlayer()).isEqualTo(BLACK);
 
 
@@ -117,27 +119,27 @@ public class DraughtsGameTest {
          */
         DraughtCell draughtCellMiddleEmpty = game.getDraughtCell(new Point(0,4));
         Assertions.assertThat(draughtCellMiddleEmpty).isNotNull();
-        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
         draughtCellMiddleEmpty = game.getDraughtCell(new Point(1,4));
         Assertions.assertThat(draughtCellMiddleEmpty).isNotNull();
-        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
         draughtCellMiddleEmpty = game.getDraughtCell(new Point(2,4));
         Assertions.assertThat(draughtCellMiddleEmpty).isNotNull();
-        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
         draughtCellMiddleEmpty = game.getDraughtCell(new Point(3,4));
         Assertions.assertThat(draughtCellMiddleEmpty).isNotNull();
-        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
         draughtCellMiddleEmpty = game.getDraughtCell(new Point(4,4));
         Assertions.assertThat(draughtCellMiddleEmpty).isNotNull();
-        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(ChipType.EMPTY);
+        Assertions.assertThat(draughtCellMiddleEmpty.getChipType()).isEqualTo(EMPTY);
         Assertions.assertThat(draughtCellMiddleEmpty.getPlayer()).isNull();
 
     }
@@ -153,6 +155,37 @@ public class DraughtsGameTest {
         Assertions.assertThat(dest).isNotNull();
         Assertions.assertThat(dest.contains(point2));
         Assertions.assertThat(dest.contains(point1));
+
+    }
+
+    @Test
+    public void aPlayerAteOneChip () throws Exception{
+
+        /*
+        A white chip eats a black chip
+         */
+        Point initialBlack = new Point(2,6);
+                Point destBlack = new Point(1,5);
+        Point initialWhite = new Point(1,3);
+        Point middleWhite = new Point(0,4);
+
+
+       game.play(initialWhite, middleWhite, WHITE);
+       game.play(initialBlack, destBlack, BLACK);
+
+        List<Point> dest =game.getAllowedMoves(middleWhite, Player.WHITE);
+        //game.play(initialWhite, initialBlack, WHITE);
+
+        Assertions.assertThat(dest).isNotNull();
+        Assertions.assertThat(dest).contains(initialBlack);
+
+        game.play(initialWhite, initialBlack, WHITE);
+
+        Assertions.assertThat(game.getDraughtCell(initialBlack).getPlayer()).isEqualTo(WHITE);
+
+        Assertions.assertThat(game.getDraughtCell(destBlack).getChipType()).isEqualTo(EMPTY);
+
+        Assertions.assertThat(game.getDraughtCell(initialWhite).getChipType()).isEqualTo(EMPTY);
 
     }
 
