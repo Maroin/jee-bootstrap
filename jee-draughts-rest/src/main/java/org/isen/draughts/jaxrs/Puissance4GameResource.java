@@ -1,5 +1,6 @@
 package org.isen.draughts.jaxrs;
 
+import java.awt.*;
 import java.io.IOException;
 
 import javax.ws.rs.GET;
@@ -36,8 +37,8 @@ public class Puissance4GameResource {
 
     @POST
     @Path("{colNumber}")
-    public Response playColumn(@PathParam("colNumber") int col) throws IOException {
-        //game.play(game.getCurrentTurn(), col);
+    public Response play(@PathParam("colNumber") int col) throws IOException {
+        game.play( new Point(3,3),new Point(4,4),game.getCurrentTurn());
         return Response
                 .status(Response.Status.SEE_OTHER)
                 .header(HttpHeaders.LOCATION,

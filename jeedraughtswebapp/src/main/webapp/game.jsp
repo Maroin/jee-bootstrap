@@ -36,12 +36,12 @@
 
           <c:forEach items="${game.columns}" var="col">
 	          	  <c:forEach items="${col.cells}" var="cell">
-                      <a href="?playcol=${col.index}" class="${cell.cssCellColor} column">
+                      <a href="?playcol=${col.index}" class="${cell.cssCellColor} column button">
                       <c:if test="${cell.cssPlayer != null}">
-                          <div class="circular ui icon ${cell.cssPlayer}  button"></div>
+                          <div class="circular ui icon ${cell.cssPlayer}  button" ></div>
                       </c:if>
                           <c:if test="${cell.cssPlayer == null}">
-                          <div class="ui icon ${cell.cssCellColor} centered button below below"></div>
+                          <div class="ui icon ${cell.cssCellColor}  button "></div>
                           </c:if>
 	              </c:forEach>
 	          </a>

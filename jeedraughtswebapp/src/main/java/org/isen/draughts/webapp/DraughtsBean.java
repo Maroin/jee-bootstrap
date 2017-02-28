@@ -1,5 +1,6 @@
 package org.isen.draughts.webapp;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,9 @@ public class DraughtsBean implements Serializable {
         return cols;
     }
 
+
     public void play(int col) {
-        //game.play(game.getCurrentTurn(), col);
+        game.play(new Point(3,3),new Point(4,4),game.getCurrentTurn());
 
     }
 
