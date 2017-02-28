@@ -1,4 +1,4 @@
-package org.isen.draughts.web;
+package org.isen.draughts.webapp;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-@WebServlet(urlPatterns = "/draughts")
+@WebServlet(urlPatterns = "/g/*")
 public class GameServlet extends HttpServlet {
 
     private static final long serialVersionUID = 4590295895653754427L;
@@ -47,7 +47,7 @@ public class GameServlet extends HttpServlet {
 
             String playCol = request.getParameter("playcol");
             if (playCol != null) {
-                //game.play(Integer.parseInt(playCol));
+                game.play(Integer.parseInt(playCol));
                 redirectToGameRoot(response, request);
             } else {
                 request.getRequestDispatcher("/game.jsp").include(request,
@@ -60,8 +60,8 @@ public class GameServlet extends HttpServlet {
 
     private void redirectToGameRoot(HttpServletResponse response,
             HttpServletRequest request) throws IOException {
-     //   response.sendRedirect(request.getContextPath()
-     //           + request.getServletPath() + "/" + game.getToken());
+        //response.sendRedirect(request.getContextPath()
+          //      + request.getServletPath() + "/" + game.getToken());
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {

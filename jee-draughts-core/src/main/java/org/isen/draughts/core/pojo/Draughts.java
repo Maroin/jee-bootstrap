@@ -1,34 +1,51 @@
 package org.isen.draughts.core.pojo;
 
+import org.isen.draughts.core.enums.CellColor;
+import org.isen.draughts.core.enums.ChipType;
 import org.isen.draughts.core.enums.Player;
 
-import java.awt.*;
-import java.awt.List;
-import java.util.*;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by isen on 09/01/2017.
  */
 public interface Draughts {
+    public final static int COLUMNS_NUMBER = 8;
+
+    java.util.List<java.util.List<DraughtCell>> board = new ArrayList<>(COLUMNS_NUMBER);
+
+    void initEmptyGrid();
 
 
 
-    Long getId();
+     void play(Point point, Point point1, Player colour);
+     ArrayList<Point> checkAround(Point point) ;
+     boolean getColour() ;
 
-    void play(Point point, Point point1, Player colour);
+     List<Point> getAllowedMoves(Point origin, Player player);
 
-    ArrayList<Point> checkAround(Point point);
+     ArrayList<Player> getBoard() ;
 
-
-
-    boolean getColour();
-
-    ArrayList<Player> getBoard();
-
-    java.util.List<java.util.List<DraughtCell>> board = new ArrayList<>(10);
-
-    /*
-    return the type of Cell at a position
+    /**
+     * Returns the cell
+     * chip is present.
+     * @param point
+     * @return
      */
-    DraughtCell getDraughtCell(Point point);
+     DraughtCell getDraughtCell(Point point) ;
+    /**
+     * Returns the number of columns.
+     * @return
+     */
+    int getColumnsNumber();
+
+    /**
+     * Returns the number of rows.
+     * @return
+     */
+    int getRowsNumber();
+
 }

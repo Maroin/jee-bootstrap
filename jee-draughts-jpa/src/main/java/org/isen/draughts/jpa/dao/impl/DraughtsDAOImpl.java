@@ -1,15 +1,14 @@
 package org.isen.draughts.jpa.dao.impl;
 
 import org.isen.draughts.core.pojo.Draughts;
-import org.isen.draughts.core.pojo.DraughtsMove;
 import org.isen.draughts.jpa.adapter.DraughtsAdapter;
 import org.isen.draughts.jpa.dao.DraughtsDAO;
-import org.isen.draughts.jpa.pojo.DraughtsImpl;
+import org.isen.draughts.jpa.pojo.DraughtsGame;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.transaction.UserTransaction;
 import java.util.List;
 
 /**
@@ -24,30 +23,30 @@ public class DraughtsDAOImpl implements DraughtsDAO {
     //UserTransaction ut;
 
     @Override
-    public Draughts createNewGame(String player1,String player2){
+    public DraughtsAdapter createNewGame(String player1, String player2){
 
-        DraughtsImpl game = new DraughtsImpl(player1, player2);
-
-        return game;
+        return new DraughtsAdapter(this,new DraughtsGame());
     };
 
 
     public DraughtsAdapter loadFromToken(String token) {
-        DraughtsImpl game = (DraughtsImpl) em
+        DraughtsGame game = (DraughtsGame) em
                 .createQuery("SELECT g FROM DraughtsGame g WHERE g.id = :token")
                 .setParameter("token", token).getSingleResult();
 
-        return new DraughtsAdapter(this);
+        return  null;
     }
 
     @Override
+    @PostConstruct
     public List<Draughts> getGames() {
-        return em.createNamedQuery(DraughtsImpl.ALL_GAME_ENTRIES)
+        return em.createNamedQuery(DraughtsGame.ALL_GAME_ENTRIES)
                 .getResultList();
     }
 
     @Override
-    public void saveEntry(Draughts entry) {
+    @PostConstruct
+    public void saveEntry(DraughtsGame entry) {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.persist(entry);
@@ -55,7 +54,7 @@ public class DraughtsDAOImpl implements DraughtsDAO {
     }
 
     @Override
-    public void removeEntry(Draughts entry) {
+    public void removeEntry(DraughtsGame entry) {
 
     }
 }
