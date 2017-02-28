@@ -11,6 +11,10 @@ public class DraughtsMoveImpl implements DraughtsMove {
 
     @Override
     public Player getPlayer() {
+
+
+
+
         return null;
     }
 

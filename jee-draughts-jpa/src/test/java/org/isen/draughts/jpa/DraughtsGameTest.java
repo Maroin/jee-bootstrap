@@ -169,6 +169,7 @@ public class DraughtsGameTest {
         // On crée un billet de blog
         DraughtsAdapter entry = dao.createNewGame("Mon billet de blog","holla");
 
+
         // On le sauvegarde
         dao.saveEntry(entry.getGame());
         // On le récupère

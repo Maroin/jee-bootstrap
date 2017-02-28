@@ -8,6 +8,7 @@ import java.awt.*;
  * Created by charles on 26/02/17.
  */
 public interface DraughtsMove {
+
     Player getPlayer();
     void setPlayer(Player player);
 
