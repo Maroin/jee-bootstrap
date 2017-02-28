@@ -2,7 +2,8 @@ package org.isen.draughts.webapp;
 
 import java.util.List;
 
-import org.dmetzler.isen.puissance4.core.ChipColour;
+import org.isen.draughts.core.enums.Player;
+import org.isen.draughts.core.pojo.DraughtCell;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class Puissance4Page {
     WebElement resetButton;
 
     public Puissance4Page(WebDriver driver) {
-        driver.get("http://localhost:9090/puissance4-web/index.jsp");
+        driver.get("http://localhost:9090/jeedraughtswebapp/index.jsp");
     }
 
     public boolean hasBoard() {
@@ -41,7 +42,7 @@ public class Puissance4Page {
         return cols;
     }
 
-    public ChipColour getCell(int i, int j) {
+    public DraughtCell getCell(int i, int j) {
         String xpath = String
                 .format("//a[@class='blue column'][%d]/div", i + 1);
         List<WebElement> cells = Lists.reverse(board.findElements(By
@@ -53,14 +54,16 @@ public class Puissance4Page {
 
     }
 
-    private ChipColour colourFromClass(String cssClass) {
-        if (cssClass.contains("red")) {
-            return ChipColour.RED;
-        } else if (cssClass.contains("yellow")) {
-            return ChipColour.YELLOW;
+    private DraughtCell colourFromClass(String cssClass) {
+        DraughtCell cell= new DraughtCell();
+        if (cssClass.contains("white")) {
+            cell.setPlayer(Player.WHITE);
+        } else if (cssClass.contains("black")) {
+            cell.setPlayer(Player.BLACK);
         } else {
-            return null;
+            cell.setPlayer(null);
         }
+        return cell;
     }
 
     public Integer getColumnsNumber() {
@@ -78,9 +81,10 @@ public class Puissance4Page {
         resetButton.click();
     }
 
-    public ChipColour getWinner() {
+    public Player getWinner() {
         try {
-            return colourFromClass(winner.getAttribute("class"));
+            return null;
+            //return colourFromClass(winner.getAttribute("class"));
         } catch (NoSuchElementException e) {
             return null;
         }

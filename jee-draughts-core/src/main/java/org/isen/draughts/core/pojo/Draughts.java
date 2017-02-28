@@ -27,6 +27,11 @@ public interface Draughts {
 
      List<Point> getAllowedMoves(Point origin, Player player);
 
+    /**
+     * Returns the colour of the winner, null if no winner.
+     * @return
+     */
+     Player getWinner();
      ArrayList<Player> getBoard() ;
 
     /**

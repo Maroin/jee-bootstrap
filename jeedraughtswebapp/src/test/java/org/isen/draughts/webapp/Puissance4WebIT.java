@@ -1,16 +1,16 @@
 package org.isen.draughts.webapp;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.dmetzler.isen.puissance4.core.ChipColour.RED;
-import static org.dmetzler.isen.puissance4.core.ChipColour.YELLOW;
 import static org.junit.Assert.*;
 
+import org.isen.draughts.core.enums.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Puissance4WebIT {
 
@@ -22,7 +22,7 @@ public class Puissance4WebIT {
     public void doBefore() throws Exception {
         driver = new FirefoxDriver();
         // Navigate to the right place
-        driver.get("http://localhost:9090/puissance4-web/index.jsp");
+        driver.get("http://localhost:9090/jeedraughtswebapp/index.jsp");
         page = PageFactory.initElements(driver, Puissance4Page.class);
     }
 
@@ -41,10 +41,10 @@ public class Puissance4WebIT {
     @Test
     public void aPlayerMayPlayAColumn() throws Exception {
         page.play(3);
-        assertThat(page.getCell(3,0)).isEqualTo(RED);
+        assertThat(page.getCell(3,0)).isEqualTo(Player.BLACK);
 
         page.play(3);
-        assertThat(page.getCell(3,1)).isEqualTo(YELLOW);
+        assertThat(page.getCell(3,1)).isEqualTo(Player.WHITE);
 
         assertThat(page.getCell(3,2)).isNull();
         assertThat(page.getCell(4,5)).isNull();
@@ -61,13 +61,13 @@ public class Puissance4WebIT {
         page.play(2);
         page.play(3);
 
-        assertThat(page.getWinner()).isEqualTo(RED);
+        assertThat(page.getWinner()).isEqualTo(Player.WHITE);
     }
 
     @Test
     public void aGameMayBeReset() throws Exception {
         page.play(3);
-        assertThat(page.getCell(3,0)).isEqualTo(RED);
+        assertThat(page.getCell(3,0)).isEqualTo(Player.WHITE);
         page.reset();
         assertThat(page.getCell(3,0)).isNull();
 

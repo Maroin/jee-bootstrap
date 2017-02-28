@@ -85,6 +85,11 @@ public class DraughtsAdapter implements Draughts{
     }
 
     @Override
+    public Player getWinner() {
+        return null;
+    }
+
+    @Override
     public ArrayList<Player> getBoard() {
         return this.coreGame.getBoard();
     }

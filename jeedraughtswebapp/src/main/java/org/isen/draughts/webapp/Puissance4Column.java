@@ -3,9 +3,6 @@ package org.isen.draughts.webapp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dmetzler.isen.puissance4.core.ChipColour;
-import org.dmetzler.isen.puissance4.core.Puissance4Game;
-
 public class Puissance4Column {
 
  /*   private int index;

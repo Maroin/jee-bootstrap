@@ -13,7 +13,7 @@ public class DraughtCell {
     private ChipType chipType;
     private CellColor cellColor;
 
-    DraughtCell(){
+    public DraughtCell(){
 
     }
 
