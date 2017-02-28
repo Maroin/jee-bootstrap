@@ -51,7 +51,7 @@ public class DraughtsDAOImpl implements DraughtsDAO {
                 .createQuery("SELECT g FROM DraughtsGame g WHERE g.token = :token")
                 .setParameter("token", token).getSingleResult();
 
-        return  null;
+        return new DraughtsAdapter(this, game);
     }
 
     @Override

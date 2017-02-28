@@ -1,6 +1,7 @@
 package org.isen.draughts.webapp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -10,10 +11,12 @@ import javax.inject.Named;
 import org.isen.draughts.core.pojo.Draughts;
 import org.isen.draughts.jpa.adapter.DraughtsAdapter;
 import org.isen.draughts.jpa.dao.DraughtsDAO;
+import org.isen.draughts.webapp.wrappers.PlayeColourWrapper;
 
 @Named("game")
 @RequestScoped
 public class DraughtsBean implements Serializable {
+
 
     DraughtsAdapter game ;
 
@@ -21,9 +24,12 @@ public class DraughtsBean implements Serializable {
     DraughtsDAO dao;
 
 
-    public List<Puissance4Column> getColumns() {
-
-        return null;
+    public List<DraughtsColumn> getColumns() {
+        List<DraughtsColumn> cols = new ArrayList<>();
+        for (int i = 0; i < game.getColumnsNumber(); i++) {
+            cols.add(new DraughtsColumn(i, game));
+        }
+        return cols;
     }
 
     public void play(int col) {

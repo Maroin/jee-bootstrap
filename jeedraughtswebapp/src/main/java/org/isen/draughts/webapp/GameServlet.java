@@ -34,15 +34,11 @@ public class GameServlet extends HttpServlet {
             throws IOException, ServletException {
 
         String token = getTokenFromRequest(request);
-        LOG.debug("Empty token, creating a new game");
         if (StringUtils.isEmpty(token) || request.getParameter("reset") != null) {
             LOG.debug("Empty token, creating a new game");
             game.createNewGame();
             redirectToGameRoot(response, request);
         } else {
-            if (LOG.isDebugEnabled()) {
-                //LOG.debug("Found token " + game.getToken() + " in request");
-            }
             game.loadFromToken(token);
 
             String playCol = request.getParameter("playcol");

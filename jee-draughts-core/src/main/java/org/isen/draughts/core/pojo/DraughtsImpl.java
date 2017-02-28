@@ -263,13 +263,7 @@ public class DraughtsImpl implements Draughts {
 
     public DraughtCell getDraughtCell(Point point) {
 
-        if (0 <= point.x || point.x <10 && point.y>=0 || point.y<10 ){
-             return board.get(point.x).get(point.y);
-         }
-     else {
-             System.out.println(" Out of the board");
-             return null;
-         }
+        return board.get(point.x).get(point.y);
     }
 
     @Override

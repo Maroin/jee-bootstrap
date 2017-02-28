@@ -96,12 +96,12 @@ public class DraughtsAdapter implements Draughts{
 
     @Override
     public int getColumnsNumber() {
-        return 0;
+        return this.coreGame.getColumnsNumber();
     }
 
     @Override
     public int getRowsNumber() {
-        return 0;
+        return this.coreGame.getRowsNumber();
     }
     public String getToken() {
         return game.getToken();

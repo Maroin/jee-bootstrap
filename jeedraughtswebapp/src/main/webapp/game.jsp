@@ -32,12 +32,14 @@
     </div>
 
     <div class="main container">
-        <div id="board" class="ui seven column padded grid">
+        <div id="board" class="ui ten column padded grid">
 
           <c:forEach items="${game.columns}" var="col">
-	          <a href="?playcol=${col.index}" class="blue column">
 	          	  <c:forEach items="${col.cells}" var="cell">
-	              	<div class="massive circular ui icon ${cell.cssColor}  button"></div>
+                      <a href="?playcol=${col.index}" class="${cell.cssCellColor} column">
+                      <c:if test="${cell.cssPlayer != null}">
+                          <div class="massive circular ui icon ${cell.cssPlayer}  button"></div>
+                      </c:if>
 	              </c:forEach>
 	          </a>
           </c:forEach>
