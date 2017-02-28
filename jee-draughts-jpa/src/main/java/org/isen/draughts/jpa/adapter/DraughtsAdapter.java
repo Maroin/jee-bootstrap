@@ -70,11 +70,6 @@ public class DraughtsAdapter implements Draughts{
     }
 
     @Override
-    public ArrayList<Point> checkAround(Point point) {
-        return this.coreGame.checkAround(point);
-    }
-
-    @Override
     public boolean getColour() {
         return this.coreGame.getColour();
     }

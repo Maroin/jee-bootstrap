@@ -22,7 +22,6 @@ public interface Draughts {
 
 
      void play(Point point, Point point1, Player colour);
-     ArrayList<Point> checkAround(Point point) ;
      boolean getColour() ;
 
      List<Point> getAllowedMoves(Point origin, Player player);

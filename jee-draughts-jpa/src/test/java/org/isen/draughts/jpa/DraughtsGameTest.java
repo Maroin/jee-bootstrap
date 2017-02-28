@@ -5,6 +5,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import org.assertj.core.api.Assertions;
 import org.isen.draughts.core.enums.ChipType;
+import org.isen.draughts.core.enums.Player;
 import org.isen.draughts.core.pojo.DraughtCell;
 import org.isen.draughts.core.pojo.Draughts;
 import org.isen.draughts.core.pojo.DraughtsImpl;
@@ -24,6 +25,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.isen.draughts.core.enums.Player.BLACK;
@@ -147,7 +149,7 @@ public class DraughtsGameTest {
 
         game.play(new Point(1,3), new Point(0,4), WHITE);
 
-        ArrayList<Point> dest =game.checkAround(new Point(1,3));
+        List<Point> dest =game.getAllowedMoves(new Point(1,3), Player.WHITE);
         Point point1 = new Point(0,4);
         Point point2 = new Point(2,4);
         Assertions.assertThat(dest).isNotNull();

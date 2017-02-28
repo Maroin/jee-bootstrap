@@ -8,7 +8,10 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+import static org.isen.draughts.core.enums.ChipType.CHIP;
 import static org.isen.draughts.core.enums.ChipType.EMPTY;
+import static org.isen.draughts.core.enums.Player.BLACK;
+import static org.isen.draughts.core.enums.Player.WHITE;
 
 /**
  * Created by charles on 27/02/17.
@@ -43,7 +46,7 @@ public class DraughtsImpl implements Draughts {
         for (int j = 0; j < 4; j++) {
             for (int i = j%2; i < 10; i+=2) {
                 DraughtCell cell  = board.get(i).get(j);
-                cell.setPlayer(Player.WHITE);
+                cell.setPlayer(WHITE);
                 cell.setChipType(ChipType.CHIP);
 
             }
@@ -65,11 +68,110 @@ public class DraughtsImpl implements Draughts {
 
     public void play(Point point, Point point1, Player colour) {
 
+        /*
+        White begins
+         */
+
+        if (point != null) {
+
+            if (getDraughtCell(point).getPlayer() == WHITE) {
+                /*
+                chip belongs to the white
+                 */
+                List<Point> pointList = getAllowedMoves(point, colour);
+
+                if (pointList.size() != 0) {
+                    if (pointList.contains(point1)) {
+                        /*
+                        there is a list of possibilities and among them, point1 is
+                        so the player can move his chip on Point1
+                         */
+                        for (List<DraughtCell> boardA : board) {
+                            for (DraughtCell draughtCells : boardA) {
+
+                                if (draughtCells == getDraughtCell(point)) {
+                                    /*
+                                    empty the initial position
+                                     */
+
+                                    draughtCells.setChipType(EMPTY);
+                                }
+
+                                if (draughtCells == getDraughtCell(point1) &&
+                                        getDraughtCell(point1).getCellColor() == CellColor.BLACK) {
+                                    /*
+                                    remove this draughtCell
+                                     */
+                                    draughtCells.setChipType(EMPTY);
+                                }
+
+                                if (draughtCells == getDraughtCell(point1)) {
+                                    /*
+                                    fill the new position
+                                     */
+                                    draughtCells.setCellColor(CellColor.WHITE);
+                                    draughtCells.setPlayer(colour);
+                                    draughtCells.setChipType(CHIP);
+                                }
 
 
-    }
-    public ArrayList<Point> checkAround(Point point) {
-        return null;
+                            }
+                        }
+
+                    }
+                } else {
+                    /*
+                    select another Point
+                     */
+                }
+            }
+
+
+            if (getDraughtCell(point).getPlayer() == BLACK) {
+                /*
+                chip belongs to the black
+                 */
+                List<Point> pointList = getAllowedMoves(point, colour);
+
+                if (pointList.size() != 0) {
+                    if (pointList.contains(point1)) {
+                        /*
+                        there is a list of possibilities and among them, point1 is
+                        so the player can move his chip on Point1
+                         */
+                        for (List<DraughtCell> boardA : board) {
+                            for (DraughtCell draughtCells : boardA) {
+
+                                if (draughtCells == getDraughtCell(point)) {
+                                    draughtCells.setChipType(EMPTY);
+                                }
+                                if (draughtCells == getDraughtCell(point1) &&
+                                        getDraughtCell(point1).getCellColor() == CellColor.WHITE) {
+                                    /*
+                                    remove this draughtCell
+                                     */
+                                    draughtCells.setChipType(EMPTY);
+                                }
+
+                                if (draughtCells == getDraughtCell(point1)) {
+                                    /*
+                                    fill the new position
+                                     */
+                                    draughtCells.setCellColor(CellColor.BLACK);
+                                    draughtCells.setPlayer(colour);
+                                    draughtCells.setChipType(CHIP);
+                                }
+                            }
+                        }
+
+                    }
+                } else {
+                    /*
+                    select another Point
+                     */
+                }
+            }
+        }
     }
 
     public boolean getColour() {
@@ -85,6 +187,10 @@ public class DraughtsImpl implements Draughts {
         Point upLeft = nextPoint(origin, 2);
         Point downLeft = nextPoint(origin, 3);
         Point downRight = nextPoint(origin,4);
+        /*
+        upRight or upLeft empty add to the list
+        upR, upL, dL, dR not empty and nextPoint empty, add to the list.
+         */
 
         if (getDraughtCell(upLeft).getChipType() == EMPTY){
             listOfPoints.add(upLeft);
@@ -157,8 +263,13 @@ public class DraughtsImpl implements Draughts {
 
     public DraughtCell getDraughtCell(Point point) {
 
-
-        return board.get(point.x).get(point.y);
+        if (0 <= point.x || point.x <10 && point.y>=0 || point.y<10 ){
+             return board.get(point.x).get(point.y);
+         }
+     else {
+             System.out.println(" Out of the board");
+             return null;
+         }
     }
 
     @Override
