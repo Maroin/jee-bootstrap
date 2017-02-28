@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.isen.draughts.core.enums.Player;
 import org.isen.draughts.core.pojo.DraughtCell;
+
+import com.google.common.collect.Lists;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import com.google.common.collect.Lists;
 
 public class Puissance4Page {
 

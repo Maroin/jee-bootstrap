@@ -1,6 +1,5 @@
 package org.isen.draughts.webapp;
 
-import static org.junit.Assert.*;
 
 import org.isen.draughts.core.enums.Player;
 import org.junit.After;
