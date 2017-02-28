@@ -61,4 +61,7 @@ public class DraughtsBean implements Serializable {
 
     }
 
+    public String getToken() {
+        return game.getToken();
+    }
 }

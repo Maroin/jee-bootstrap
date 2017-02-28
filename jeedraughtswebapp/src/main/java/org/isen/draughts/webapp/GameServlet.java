@@ -34,7 +34,7 @@ public class GameServlet extends HttpServlet {
             throws IOException, ServletException {
 
         String token = getTokenFromRequest(request);
-
+        LOG.debug("Empty token, creating a new game");
         if (StringUtils.isEmpty(token) || request.getParameter("reset") != null) {
             LOG.debug("Empty token, creating a new game");
             game.createNewGame();
@@ -60,8 +60,8 @@ public class GameServlet extends HttpServlet {
 
     private void redirectToGameRoot(HttpServletResponse response,
             HttpServletRequest request) throws IOException {
-        //response.sendRedirect(request.getContextPath()
-          //      + request.getServletPath() + "/" + game.getToken());
+        response.sendRedirect(request.getContextPath()
+                + request.getServletPath() + "/" + game.getToken());
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {

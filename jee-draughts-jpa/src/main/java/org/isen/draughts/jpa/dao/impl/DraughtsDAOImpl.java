@@ -1,14 +1,20 @@
 package org.isen.draughts.jpa.dao.impl;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.isen.draughts.core.pojo.Draughts;
 import org.isen.draughts.jpa.adapter.DraughtsAdapter;
 import org.isen.draughts.jpa.dao.DraughtsDAO;
 import org.isen.draughts.jpa.pojo.DraughtsGame;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import java.util.List;
 
 /**
@@ -19,19 +25,30 @@ public class DraughtsDAOImpl implements DraughtsDAO {
     @Inject
     EntityManager em;
 
-    //@Inject
-    //UserTransaction ut;
+    @Inject
+    UserTransaction ut;
 
     @Override
     public DraughtsAdapter createNewGame(){
+        DraughtsGame game = new DraughtsGame();
+        game.setToken(RandomStringUtils.randomAlphanumeric(10).toLowerCase());
+        try {
+            ut.begin();
+            em.persist(game);
+            ut.commit();
 
-        return new DraughtsAdapter(this,new DraughtsGame());
+        } catch (NotSupportedException | SystemException | SecurityException
+                | IllegalStateException | RollbackException
+                | HeuristicMixedException | HeuristicRollbackException e) {
+            return null;
+        }
+        return new DraughtsAdapter(this,game);
     };
 
 
     public DraughtsAdapter loadFromToken(String token) {
         DraughtsGame game = (DraughtsGame) em
-                .createQuery("SELECT g FROM DraughtsGame g WHERE g.id = :token")
+                .createQuery("SELECT g FROM DraughtsGame g WHERE g.token = :token")
                 .setParameter("token", token).getSingleResult();
 
         return  null;
@@ -45,10 +62,15 @@ public class DraughtsDAOImpl implements DraughtsDAO {
 
     @Override
     public void saveEntry(DraughtsGame entry) {
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.persist(entry);
-        tx.commit();
+        try {
+            ut.begin();
+            em.merge(entry);
+            ut.commit();
+        } catch (SecurityException | IllegalStateException | RollbackException
+                | HeuristicMixedException | HeuristicRollbackException
+                | SystemException | NotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
