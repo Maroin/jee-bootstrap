@@ -38,8 +38,11 @@
 	          	  <c:forEach items="${col.cells}" var="cell">
                       <a href="?playcol=${col.index}" class="${cell.cssCellColor} column">
                       <c:if test="${cell.cssPlayer != null}">
-                          <div class="massive circular ui icon ${cell.cssPlayer}  button"></div>
+                          <div class="circular ui icon ${cell.cssPlayer}  button"></div>
                       </c:if>
+                          <c:if test="${cell.cssPlayer == null}">
+                          <div class="ui icon ${cell.cssCellColor} centered button below below"></div>
+                          </c:if>
 	              </c:forEach>
 	          </a>
           </c:forEach>

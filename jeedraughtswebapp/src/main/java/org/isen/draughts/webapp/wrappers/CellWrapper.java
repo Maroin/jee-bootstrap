@@ -24,7 +24,7 @@ public class CellWrapper {
         if(CellColor.BLACK == cellColor) {
             return "black";
         } else if(CellColor.WHITE ==cellColor) {
-            return "yellow";
+            return "red";
         } else {
             return "";
         }

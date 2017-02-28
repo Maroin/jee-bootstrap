@@ -22,17 +22,22 @@ public class DraughtsImpl implements Draughts {
 
     java.util.List<java.util.List<DraughtCell>> board = new ArrayList<>(COLUMNS_NUMBER);
 
+    CellColor color  = CellColor.WHITE;
     public void initEmptyGrid(){
         for (int i = 0; i < 10; i++) {
 
             ArrayList<DraughtCell> row = new ArrayList<>(10);
 
             for (int j = 0; j < 10; j++) {
-                CellColor color  = CellColor.BLACK;
-                if((i*10 + j)%2 == 0){
-                    color = CellColor.WHITE;
-                }
                 DraughtCell draughtCell = new DraughtCell(null, EMPTY,color);
+                if(j != 9){
+                    if(color == CellColor.BLACK){
+                        color = CellColor.WHITE;
+                    }else{
+
+                        color = CellColor.BLACK;
+                    }
+                }
                 row.add(draughtCell);
             }
             board.add(row);
