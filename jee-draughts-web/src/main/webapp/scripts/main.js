@@ -8,7 +8,7 @@ angular.module('DraughtsAngularApp', [])
       }
     );
     $scope.play = function(col) {
-      $http(col.playAction).success(function(data) {$scope.game=data;});
+
     };
 
   }]) ;
