@@ -176,14 +176,21 @@ public class DraughtsGameTest {
 
         Assertions.assertThat(game.getDraughtCell(destBlack).getChipType()).isEqualTo(EMPTY);
 
+        System.out.println("*****************1ST PLAY WHITE MOVE******************");
         game.play(initialWhite, middleWhite, WHITE);
+
+                System.out.println("*****************2ND PLAY BLACK MOVE******************");
 
         game.play(initialBlack, destBlack, BLACK);
 
 
+                System.out.println("*****************CHECK ALLOWED MOVES FOR MIDDLE WHITE******************");
+
         List<Point> dest =game.getAllowedMoves(middleWhite, Player.WHITE);
 
-        //game.play(initialWhite, initialBlack, WHITE);
+                                            System.out.println("*****************3RD PLAY WHITE EAT******************");
+
+        game.play(initialWhite, initialBlack, WHITE);
 
         Assertions.assertThat(dest).isNotNull();
         System.out.println("true");

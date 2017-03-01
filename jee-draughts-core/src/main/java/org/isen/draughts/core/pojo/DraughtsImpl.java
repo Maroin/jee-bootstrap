@@ -24,11 +24,11 @@ public class DraughtsImpl implements Draughts {
 
     CellColor color  = CellColor.WHITE;
     public void initEmptyGrid(){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < COLUMNS_NUMBER; i++) {
 
-            ArrayList<DraughtCell> row = new ArrayList<>(10);
+            ArrayList<DraughtCell> row = new ArrayList<>(COLUMNS_NUMBER);
 
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < COLUMNS_NUMBER; j++) {
                 DraughtCell draughtCell = new DraughtCell(null, EMPTY,color);
                 if(j != 9){
                     if(color == CellColor.BLACK){
@@ -49,7 +49,7 @@ public class DraughtsImpl implements Draughts {
         initEmptyGrid();
 
         for (int j = 0; j < 4; j++) {
-            for (int i = j%2; i < 10; i+=2) {
+            for (int i = j%2; i < COLUMNS_NUMBER; i+=2) {
                 DraughtCell cell  = board.get(i).get(j);
                 cell.setPlayer(WHITE);
                 cell.setChipType(ChipType.CHIP);
@@ -57,8 +57,8 @@ public class DraughtsImpl implements Draughts {
             }
         }
 
-        for (int j = 6; j < 10; j++) {
-            for (int i = j%2; i < 10; i+=2) {
+        for (int j = 6; j < COLUMNS_NUMBER; j++) {
+            for (int i = j%2; i < COLUMNS_NUMBER; i+=2) {
                 DraughtCell cell  = board.get(i).get(j);
                 cell.setPlayer(Player.BLACK);
                 cell.setChipType(ChipType.CHIP);
@@ -204,11 +204,12 @@ public class DraughtsImpl implements Draughts {
         upRight or upLeft empty add to the list
         upR, upL, dL, dR not empty and nextPoint empty, add to the list.
          */
+        System.out.println("Player +"+player.toString()+ '\n'+
+                "Originally from => x :"+origin.x + " y :"+origin.y);
 
         if (upLeft !=null){
             if (getDraughtCell(upLeft)!=null){
 
-                System.out.println("Player +"+player.toString());
                 System.out.println("upLeft =  x : "+upLeft.x+" y : " + upLeft.y);
 
                 if (getDraughtCell(upLeft).getChipType() == EMPTY){
@@ -225,6 +226,8 @@ public class DraughtsImpl implements Draughts {
                             if (getDraughtCell(nextPoint(upLeft,2))!=null) {
                                 if (getDraughtCell(nextPoint(upLeft,2)).getChipType()!=null ) {
                                     if (getDraughtCell(nextPoint(upLeft, 2)).getChipType() == EMPTY) {
+                                        System.out.println("You can eat it");
+
 
                                         listOfPoints.add(nextPoint(upLeft, 2));
                                         System.out.println("notTrue");
@@ -232,7 +235,10 @@ public class DraughtsImpl implements Draughts {
                                 }
                                 }
                             }
-                        }
+                        } else {
+                        System.out.println("Neighbor");
+
+                    }
                     }
                 }
         }
@@ -241,26 +247,54 @@ public class DraughtsImpl implements Draughts {
 
             if (getDraughtCell(upRight) != null) {
 
+                System.out.println("Player +"+player.toString());
+                System.out.println("upRight =  x : "+upRight.x+" y : " + upRight.y);
+
                 if (getDraughtCell(upRight).getChipType() == EMPTY) {
+
+                    System.out.println("upRight chip is empty ");
+
                     listOfPoints.add(upRight);
                 } else if (getDraughtCell(upLeft).getPlayer() != player) {
+
+                    System.out.println("upLeft chip is ennemy ");
+
                     if (getDraughtCell(nextPoint(upRight, 1)).getChipType() == EMPTY) {
+                        System.out.println("You can eat it");
+
                         listOfPoints.add(nextPoint(upRight, 1));
                     }
+                } else {
+                    System.out.println("Neighbor");
+
                 }
             }
         }
+
 
         if (downLeft !=null) {
 
 
             if (getDraughtCell(downLeft) != null) {
 
+
+                System.out.println("Player +"+player.toString());
+                System.out.println("downLeft =  x : "+downLeft.x+" y : " + downLeft.y);
+
                 if (getDraughtCell(downLeft).getPlayer() != player) {
+
+                    System.out.println("downLet chip is ennemy ");
+
                     if (getDraughtCell(nextPoint(downLeft, 3)).getChipType() == EMPTY) {
+                        System.out.println("You can eat it");
+
                         listOfPoints.add(nextPoint(downLeft, 3));
                     }
                 }
+                else {
+                    System.out.println("Neighbor");
+                }
+
 
             }
         }
@@ -268,10 +302,21 @@ public class DraughtsImpl implements Draughts {
         if (downRight!=null){
             if (getDraughtCell(downRight)!=null) {
 
+                System.out.println("Player +"+player.toString());
+                System.out.println("downRight =  x : "+downRight.x+" y : " + downRight.y);
+
                 if (getDraughtCell(downRight).getPlayer() != player) {
+
+                    System.out.println("downRight chip is ennemy ");
+
                     if (getDraughtCell(nextPoint(downRight, 4)).getChipType() == EMPTY) {
+                        System.out.println("You can eat it");
+
                         listOfPoints.add(nextPoint(downRight, 4));
                     }
+                } else {
+                    System.out.println("Neighbor");
+
                 }
             }
         }
