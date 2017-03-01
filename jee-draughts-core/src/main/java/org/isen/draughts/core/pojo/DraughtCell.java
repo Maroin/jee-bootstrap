@@ -26,9 +26,6 @@ public class DraughtCell {
         this.cellColor = cellColor;
     }
 
-    public DraughtCell(CellColor cellColor) {
-        this.cellColor = cellColor;
-    }
 
     public Player getPlayer() {
         return player;

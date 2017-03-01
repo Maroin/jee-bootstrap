@@ -19,9 +19,6 @@ import java.util.List;
 public class DraughtsAdapter implements Draughts{
 
 
-    public Draughts getCoreGame() {
-        return coreGame;
-    }
 
     private Draughts coreGame;
 

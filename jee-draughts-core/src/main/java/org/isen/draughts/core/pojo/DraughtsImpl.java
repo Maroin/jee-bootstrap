@@ -551,6 +551,7 @@ public class DraughtsImpl implements Draughts {
 
 
 
+
         return null;
     }
 

@@ -13,9 +13,7 @@ import java.util.List;
  * Created by isen on 09/01/2017.
  */
 public interface Draughts {
-    public final static int COLUMNS_NUMBER = 9;
 
-    java.util.List<java.util.List<DraughtCell>> board = new ArrayList<>(COLUMNS_NUMBER);
 
     void initEmptyGrid();
 

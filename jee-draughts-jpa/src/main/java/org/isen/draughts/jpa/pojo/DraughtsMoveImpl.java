@@ -32,14 +32,6 @@ public class DraughtsMoveImpl {
     public DraughtsMoveImpl() {
     }
 
-    public DraughtsMoveImpl(String player, int origineX, int origineY, int destX, int destY) {
-        this.player = player;
-        this.origineX = origineX;
-        this.origineY = origineY;
-        this.destX = destX;
-        this.destY = destY;
-    }
-
 
     public DraughtsGame getGame() {
         return game;
