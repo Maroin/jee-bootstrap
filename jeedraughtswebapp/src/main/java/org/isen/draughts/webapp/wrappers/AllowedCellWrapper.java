@@ -10,12 +10,13 @@ import java.util.List;
 public class AllowedCellWrapper {
     private boolean isOk = false;
     public AllowedCellWrapper(int i, int index, List<Point> points) {
-        points.forEach(point -> {
+        Iterator<Point> it = points.iterator();
+        while (it.hasNext() && !isOk){
+            Point point = it.next();
             if(point.y == i && point.x == index){
                 isOk = true;
-                return;
             }
-        });
+        }
     }
     public boolean getIsAllowed(){
         return isOk;
