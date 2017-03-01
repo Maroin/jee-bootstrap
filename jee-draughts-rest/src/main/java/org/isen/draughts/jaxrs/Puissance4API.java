@@ -44,4 +44,5 @@ public class Puissance4API {
         DraughtsAdapter game = dao.loadFromToken(token);
         return rc.initResource(new Puissance4GameResource(game));
     }
+
 }

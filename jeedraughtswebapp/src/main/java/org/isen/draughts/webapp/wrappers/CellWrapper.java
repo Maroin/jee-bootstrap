@@ -13,11 +13,17 @@ public class CellWrapper {
     private Player player;
     private ChipType chipType;
     private CellColor cellColor;
+    private int index;
 
-    public CellWrapper(DraughtCell draughtCell) {
+    public int getIndex() {
+        return index;
+    }
+
+    public CellWrapper(DraughtCell draughtCell, int index) {
         this.player = draughtCell.getPlayer();
         this.chipType = draughtCell.getChipType();
         this.cellColor = draughtCell.getCellColor();
+        this.index = index;
     }
 
     public String getCssCellColor() {
@@ -36,7 +42,7 @@ public class CellWrapper {
         } else if(ChipType.DRAFT ==chipType) {
             return "draft";
         } else {
-            return "";
+            return null;
         }
     }
 

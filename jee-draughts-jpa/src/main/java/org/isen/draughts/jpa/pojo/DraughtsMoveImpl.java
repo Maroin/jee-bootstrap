@@ -12,20 +12,32 @@ import java.awt.*;
 public class DraughtsMoveImpl {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private Player player;
+    private String player;
 
-    private Point origine;
+    private int origineX;
 
-    private Point dest;
+    private int origineY;
+
+    private int destX;
+
+    private int destY;
 
 
     @ManyToOne
     private DraughtsGame game;
 
     public DraughtsMoveImpl() {
+    }
+
+    public DraughtsMoveImpl(String player, int origineX, int origineY, int destX, int destY) {
+        this.player = player;
+        this.origineX = origineX;
+        this.origineY = origineY;
+        this.destX = destX;
+        this.destY = destY;
     }
 
 
@@ -39,12 +51,12 @@ public class DraughtsMoveImpl {
 
 
     public DraughtsMoveImpl(Player player, Point origine, Point dest) {
-        this.player = player;
-        this.origine = origine;
-        this.dest = dest;
-    }
+        this.player = player.toString();
+        this.origineX = origine.x;
+        this.origineY = origine.y;
 
-    public DraughtsMoveImpl(Point point, Point point1, Player colour) {
+        this.destX = dest.x;
+        this.destY = dest.y;
     }
 
 
@@ -56,27 +68,43 @@ public class DraughtsMoveImpl {
         this.id = id;
     }
 
-    public Player getPlayer() {
+    public String getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(String player) {
         this.player = player;
     }
 
-    public Point getOrigine() {
-        return origine;
+    public int getOrigineX() {
+        return origineX;
     }
 
-    public void setOrigine(Point origine) {
-        this.origine = origine;
+    public void setOrigineX(int origineX) {
+        this.origineX = origineX;
     }
 
-    public Point getDest() {
-        return dest;
+    public int getOrigineY() {
+        return origineY;
     }
 
-    public void setDest(Point dest) {
-        this.dest = dest;
+    public void setOrigineY(int origineY) {
+        this.origineY = origineY;
+    }
+
+    public int getDestX() {
+        return destX;
+    }
+
+    public void setDestX(int destX) {
+        this.destX = destX;
+    }
+
+    public int getDestY() {
+        return destY;
+    }
+
+    public void setDestY(int destY) {
+        this.destY = destY;
     }
 }

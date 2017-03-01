@@ -66,10 +66,17 @@ public class DraughtsDAOImpl implements DraughtsDAO {
             ut.begin();
             em.merge(entry);
             ut.commit();
+
+            System.out.println("ok");
+
         } catch (SecurityException | IllegalStateException | RollbackException
                 | HeuristicMixedException | HeuristicRollbackException
                 | SystemException | NotSupportedException e) {
             e.printStackTrace();
+
+            System.out.println("KO");
+
+
         }
     }
 

@@ -147,7 +147,18 @@ public class DraughtsGameTest {
     @Test
     public void aPlayerCanMove() throws Exception {
 
+
+        Assertions.assertThat(game.getDraughtCell(new Point(1,3)).getPlayer()).isEqualTo(WHITE);
+
+        Assertions.assertThat(game.getDraughtCell(new Point(0,4)).getChipType()).isEqualTo(EMPTY);
         game.play(new Point(1,3), new Point(0,4), WHITE);
+
+        Assertions.assertThat(game.getDraughtCell(new Point(1,3)).getChipType()).isEqualTo(EMPTY);
+
+        Assertions.assertThat(game.getDraughtCell(new Point(1,3)).getPlayer()).isEqualTo(WHITE);
+
+        Assertions.assertThat(game.getDraughtCell(new Point(0,4)).getPlayer()).isEqualTo(WHITE);
+
 
         List<Point> dest =game.getAllowedMoves(new Point(1,3), Player.WHITE);
         Point point1 = new Point(0,4);

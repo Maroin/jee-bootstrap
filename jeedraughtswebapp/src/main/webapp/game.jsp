@@ -32,17 +32,24 @@
     </div>
 
     <div class="main container">
+        <p>Current Turn : ${game.currentPlayer} Player</p>
         <div id="board" class="ui ten column padded grid">
 
           <c:forEach items="${game.columns}" var="col">
 	          	  <c:forEach items="${col.cells}" var="cell">
-                      <a href="?playcol=${col.index}" class="${cell.cssCellColor} column button">
-                      <c:if test="${cell.cssPlayer != null}">
-                          <div class="circular ui icon ${cell.cssPlayer}  button" ></div>
+                      <c:if test="${cell.cssPlayer != null && cell.cssChipType != null}">
+
+                        <a href="?precol=${col.index}&prerow=${cell.index}" class="${cell.cssCellColor} column button">
+                        <div class="circular ui icon ${cell.cssPlayer}  button" ></div>
                       </c:if>
-                          <c:if test="${cell.cssPlayer == null}">
-                          <div class="ui icon ${cell.cssCellColor}  button "></div>
-                          </c:if>
+                       <c:if test="${!game.allowedMoves[col.index].cells[cell.index].isAllowed && (cell.cssPlayer == null || cell.cssChipType == null)}">
+                        <a href="#" class="${cell.cssCellColor} column button">
+                        <div class="ui icon ${cell.cssCellColor}  button "></div>
+                      </c:if>
+                      <c:if test="${game.allowedMoves[col.index].cells[cell.index].isAllowed}">
+                          <a href="?playcol=${col.index}&playrow=${cell.index}&precol=${game.prePlayX}&prerow=${game.prePlayY}"" class="${cell.cssCellColor} column button">
+                          <div class="circular ui icon green  button "></div>
+                      </c:if>
 	              </c:forEach>
 	          </a>
           </c:forEach>

@@ -26,6 +26,10 @@ public class DraughtsGame {
     @OneToMany(cascade= CascadeType.ALL, mappedBy="game", fetch=FetchType.EAGER)
     private List<DraughtsMoveImpl> moves =new ArrayList<>();
 
+    private int tryX = -1;
+
+    private int tryY = -1;
+
 
     private String token;
 
@@ -57,5 +61,21 @@ public class DraughtsGame {
 
     public void setMoves(List<DraughtsMoveImpl> moves) {
         this.moves = moves;
+    }
+
+    public int getTryX() {
+        return tryX;
+    }
+
+    public void setTryX(int tryX) {
+        this.tryX = tryX;
+    }
+
+    public int getTryY() {
+        return tryY;
+    }
+
+    public void setTryY(int tryY) {
+        this.tryY = tryY;
     }
 }

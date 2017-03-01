@@ -1,5 +1,7 @@
 package org.isen.draughts.webapp;
 
+import java.awt.*;
+import java.io.Console;
 import java.io.IOException;
 
 import javax.inject.Inject;
@@ -42,9 +44,24 @@ public class GameServlet extends HttpServlet {
             game.loadFromToken(token);
 
             String playCol = request.getParameter("playcol");
-            if (playCol != null) {
-                game.play(Integer.parseInt(playCol));
+
+            String playRow = request.getParameter("playrow");
+
+            String preCol = request.getParameter("precol");
+
+            String preRow = request.getParameter("prerow");
+            if(preCol != null && preRow != null){
+
+                if (playCol != null && playRow != null ) {
+
+                    game.play(Integer.parseInt(preCol),Integer.parseInt(preRow),Integer.parseInt(playCol),Integer.parseInt(playRow));
+                }else{
+                    game.prePlay(Integer.parseInt(preCol), Integer.parseInt(preRow));
+
+                }
+                game.loadFromToken(token);
                 redirectToGameRoot(response, request);
+
             } else {
                 request.getRequestDispatcher("/game.jsp").include(request,
                         response);

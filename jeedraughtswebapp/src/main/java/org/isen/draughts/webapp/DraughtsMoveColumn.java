@@ -1,27 +1,33 @@
 package org.isen.draughts.webapp;
 
 import org.isen.draughts.core.pojo.Draughts;
+import org.isen.draughts.webapp.wrappers.AllowedCellWrapper;
 import org.isen.draughts.webapp.wrappers.CellWrapper;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DraughtsColumn {
+/**
+ * Created by charles on 01/03/17.
+ */
+public class DraughtsMoveColumn {
 
-   private int index;
+    private int index;
+    private List<Point> points;
     private Draughts game;
     List<CellWrapper> cells;
 
-    public DraughtsColumn(int i, Draughts game) {
+    public DraughtsMoveColumn(int i, List<Point> points,Draughts game) {
         this.index = i;
+        this.points = points;
         this.game = game;
     }
 
-    public List<CellWrapper> getCells() {
-        List<CellWrapper> cells = new ArrayList<>();
+    public List<AllowedCellWrapper> getCells() {
+        List<AllowedCellWrapper> cells = new ArrayList<>();
         for (int i = 0; i < game.getRowsNumber(); i++) {
-            cells.add(new CellWrapper(game.getDraughtCell(new Point(i, index)),i));
+            cells.add(new AllowedCellWrapper(i, index, points));
         }
         return cells;
     }
@@ -29,5 +35,4 @@ public class DraughtsColumn {
     public int getIndex() {
         return index;
     }
-
 }

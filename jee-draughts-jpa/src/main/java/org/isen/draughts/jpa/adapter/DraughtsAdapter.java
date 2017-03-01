@@ -11,6 +11,7 @@ import org.isen.draughts.jpa.pojo.DraughtsMoveImpl;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by maroin on 22/01/17.
@@ -23,6 +24,8 @@ public class DraughtsAdapter implements Draughts{
     }
 
     private Draughts coreGame;
+
+    private List<Point> allowedMoves = new ArrayList<>();
 
     public DraughtsGame getGame() {
         return game;
@@ -41,16 +44,38 @@ public class DraughtsAdapter implements Draughts{
         this.game = game;
         this.coreGame = new DraughtsImpl();
 
+        System.out.println("ctor");
         for (DraughtsMoveImpl turn : game.getMoves()) {
-            this.coreGame.play(turn.getOrigine(), turn.getDest(),turn.getPlayer());
+
+            System.out.println("Turn");
+
+            System.out.println(new Point(turn.getOrigineX(),turn.getOrigineY()));
+
+            System.out.println(new Point(turn.getDestX(),turn.getDestY()));
+
+            System.out.println(turn.getPlayer());
+
+            this.coreGame.play(new Point(turn.getOrigineX(),turn.getOrigineY()),
+                    new Point(turn.getDestX(),turn.getDestY())
+                    ,Player.valueOf(turn.getPlayer()));
         }
+        prePlay(game.getTryX(),game.getTryY());
 
     }
 
 
     private void switchTurn() {
-     //   game.setCurrentTurn(game.getCurrentTurn() == ChipColour.RED ? ChipColour.YELLOW
-     //           : ChipColour.RED);
+        game.setCurrentTurn(game.getCurrentTurn() == Player.BLACK ? Player.WHITE
+                : Player.BLACK);
+        prePlay(-1,-1);
+
+    }
+    public void prePlay(int x,int y) {
+        game.setTryX(x);
+        game.setTryY(y);
+        if(x>0 && y>0)
+        allowedMoves = coreGame.getAllowedMoves(new Point(x,y),getCurrentTurn());
+        this.dao.saveEntry(this.game);
 
     }
 
@@ -61,11 +86,22 @@ public class DraughtsAdapter implements Draughts{
 
     @Override
     public void play(Point point, Point point1, Player colour) {
+
+        System.out.println("ok");
+        System.out.println(point.toString() + point1.toString() +colour);
         coreGame.play(point,point1,colour);
-        this.game.getMoves().add(new DraughtsMoveImpl(point,point1,colour));
+
+        System.out.println("ok");
+        this.game.getMoves().add(new DraughtsMoveImpl(colour,point,point1));
+
+        System.out.println("ok");
         switchTurn();
 
+        System.out.println("ok");
+
         dao.saveEntry(game);
+
+        System.out.println("ok");
 
     }
 
@@ -111,6 +147,13 @@ public class DraughtsAdapter implements Draughts{
         return game.getCurrentTurn();
     }
 
+    public List<Point> getAllowedMoves() {
+        return allowedMoves;
+    }
+
+    public void setAllowedMoves(List<Point> allowedMoves) {
+        this.allowedMoves = allowedMoves;
+    }
 }
 
 
