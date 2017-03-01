@@ -19,13 +19,19 @@ import static org.isen.draughts.core.enums.Player.WHITE;
  * Created by charles on 27/02/17.
  */
 public class DraughtsImpl implements Draughts {
-
+    /*
+    2 essential elements : Columns Number and the Board which contains the List of the List of the Draughts Cells
+     */
     public final static int COLUMNS_NUMBER = 10;
 
     java.util.List<java.util.List<DraughtCell>> board = new ArrayList<>(COLUMNS_NUMBER);
 
     CellColor color  = CellColor.WHITE;
+
     public void initEmptyGrid(){
+        /*
+        initEmptyGrid allows us to initial the board with the correct cellColors
+         */
         for (int i = 0; i < COLUMNS_NUMBER; i++) {
 
             ArrayList<DraughtCell> row = new ArrayList<>(COLUMNS_NUMBER);
@@ -50,8 +56,15 @@ public class DraughtsImpl implements Draughts {
     public DraughtsImpl(){
         initEmptyGrid();
 
+        /*
+        After having set the cellColors, we put the chips on the board.
+         */
+
         for (int j = 0; j < 4; j++) {
             for (int i = j%2; i < COLUMNS_NUMBER; i+=2) {
+                /*
+                White Chip
+                 */
                 DraughtCell cell  = board.get(i).get(j);
                 cell.setPlayer(WHITE);
                 cell.setChipType(ChipType.CHIP);
@@ -61,6 +74,9 @@ public class DraughtsImpl implements Draughts {
 
         for (int j = 6; j < COLUMNS_NUMBER; j++) {
             for (int i = j%2; i < COLUMNS_NUMBER; i+=2) {
+                                /*
+                Black Chip
+                 */
                 DraughtCell cell  = board.get(i).get(j);
                 cell.setPlayer(Player.BLACK);
                 cell.setChipType(ChipType.CHIP);
@@ -74,14 +90,22 @@ public class DraughtsImpl implements Draughts {
 
 
     public void play(Point point, Point point1, Player colour) {
-         DraughtCell orig = this.board.get(point.x).get(point.y);
+
+        /*
+        get the appropriate Draughts Cells
+        empty the original slot
+        fill the destination
+         */
+        DraughtCell orig = this.board.get(point.x).get(point.y);
         DraughtCell dest = this.board.get(point1.x).get(point1.y);
+
         dest.setPlayer(orig.getPlayer());
         dest.setChipType(orig.getChipType());
         orig.setChipType(EMPTY);
         orig.setPlayer(null);
 
         if(Math.abs( point.x - point1.x) == 2 ){
+
             int xTaken  = point.x + ( point1.x - point.x)/2;
             int yTaken  = point.y + ( point1.y - point.y)/2;
             DraughtCell taken = this.board.get(xTaken).get(yTaken);
@@ -220,9 +244,19 @@ public class DraughtsImpl implements Draughts {
     public boolean getColour() {
         return false;
     }
+
+
     public java.util.List<Point> getFreeMove(Point origin, Player player){
+
         java.util.List<Point> points = new LinkedList<>();
+
         DraughtCell cell = board.get(origin.x).get(origin.y);
+
+        /*
+        Case where there is a chip
+
+        depending on the color we set an OffSet (White are going one way, Black the other way)
+         */
         if(cell.getChipType() != EMPTY && cell.getPlayer() == player) {
             int allowedOffset = 1;
             switch (player) {
@@ -234,6 +268,7 @@ public class DraughtsImpl implements Draughts {
                     break;
             }
 
+
             if (cell.getChipType() == CHIP) {
                 int x,y;
                 x= origin.x+1;
@@ -249,29 +284,44 @@ public class DraughtsImpl implements Draughts {
                     points.add(new Point(x,y));
                 }
 
-            }else if(cell.getChipType() == DRAFT){
+            }
+            /*
+            Case where it's a draft is not implemented
+            else if(cell.getChipType() == DRAFT){
+             */
 
-        }
+
         }
         return points;
     }
 
 
     public java.util.List<Point> getForcedMove(Point origin, Player player){
+
         java.util.List<Point> points = new LinkedList<>();
         DraughtCell cell = board.get(origin.x).get(origin.y);
         if(cell.getChipType() != EMPTY && cell.getPlayer() == player) {
-
+        /*
+        4 cases appear : upLeft, upRight, downRight, downLeft
+        */
             if (cell.getChipType() == CHIP) {
+                /*
+                upRight case
+                 */
                 int x,y;
                 x= origin.x+1;
                 y= origin.y+1;
                 try {
-                    if (board.get(x).get(y).getChipType() != EMPTY && board.get(x).get(y).getPlayer() != player && board.get(x + 1).get(y + 1).getChipType() == EMPTY) {
+                    if (board.get(x).get(y).getChipType() != EMPTY &&
+                            board.get(x).get(y).getPlayer() != player &&
+                            board.get(x + 1).get(y + 1).getChipType() == EMPTY) {
+
                         points.add(new Point(x+1, y+1));
                     }
                 }catch (Exception e){}
-
+                /*
+                downLeft case
+                 */
                 x= origin.x-1;
                 y= origin.y-1;
                 try {
@@ -279,7 +329,9 @@ public class DraughtsImpl implements Draughts {
                         points.add(new Point(x-1,y-1));
                     }
                 }catch (Exception e){}
-
+                /*
+                upLeft case
+                 */
 
                 x= origin.x-1;
                 y= origin.y+1;
@@ -289,7 +341,9 @@ public class DraughtsImpl implements Draughts {
                         points.add(new Point(x-1,y+1));
                     }
                 }catch (Exception e){ }
-
+                /*
+                downLeft case
+                 */
 
                 x= origin.x+1;
                 y= origin.y-1;
@@ -300,14 +354,19 @@ public class DraughtsImpl implements Draughts {
                 }catch (Exception e){ }
 
 
-            }else if(cell.getChipType() == DRAFT){
-
             }
+            /*
+            Draft case need to be implemented
+            else if(cell.getChipType() == DRAFT){
+             */
+
+
         }
         return points;
     };
     @Override
     public java.util.List<Point> getAllowedMoves(Point origin, Player player) {
+
         List<Point> list = getForcedMove(origin,player);
         if(list.size() != 0){
             return list;
@@ -487,6 +546,11 @@ public class DraughtsImpl implements Draughts {
       }
     @Override
     public Player getWinner() {
+
+
+
+
+
         return null;
     }
 

@@ -47,10 +47,12 @@ public class DraughtsAdapter implements Draughts{
         for (DraughtsMoveImpl turn : game.getMoves()) {
 
 
-            this.coreGame.play(new Point(turn.getOrigineX(),turn.getOrigineY()),
-                    new Point(turn.getDestX(),turn.getDestY())
-                    ,Player.valueOf(turn.getPlayer()));
+            this.coreGame.play(
+                    new Point(turn.getOrigineX(),turn.getOrigineY()),
+                    new Point(turn.getDestX(),turn.getDestY()),
+                    Player.valueOf(turn.getPlayer()));
         }
+
         prePlay(game.getTryX(),game.getTryY());
 
     }

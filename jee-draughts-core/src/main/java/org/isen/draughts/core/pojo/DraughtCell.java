@@ -9,6 +9,9 @@ import org.isen.draughts.core.enums.Player;
  */
 public class DraughtCell {
 
+    /*
+    A draught cell is composed of 3 elements : the cellColor, the player (white or black) and the ChipType (Draft, Chip, Empty)
+     */
     private Player player;
     private ChipType chipType;
     private CellColor cellColor;
