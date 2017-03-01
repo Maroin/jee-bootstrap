@@ -27,7 +27,7 @@ public class DraughtsMoveColumn {
     public List<AllowedCellWrapper> getCells() {
         List<AllowedCellWrapper> cells = new ArrayList<>();
         for (int i = 0; i < game.getRowsNumber(); i++) {
-            cells.add(new AllowedCellWrapper(i, index, points));
+            cells.add(new AllowedCellWrapper(index, i, points));
         }
         return cells;
     }

@@ -47,7 +47,7 @@
                         <div class="ui icon ${cell.cssCellColor}  button "></div>
                       </c:if>
                       <c:if test="${game.allowedMoves[col.index].cells[cell.index].isAllowed}">
-                          <a href="?playcol=${col.index}&playrow=${cell.index}&precol=${game.prePlayX}&prerow=${game.prePlayY}"" class="${cell.cssCellColor} column button">
+                          <a href="?playcol=${cell.index}&playrow=${col.index}&precol=${game.prePlayX}&prerow=${game.prePlayY}" class="${cell.cssCellColor} column button">
                           <div class="circular ui icon green  button "></div>
                       </c:if>
 	              </c:forEach>

@@ -59,7 +59,7 @@ public class DraughtsBean implements Serializable {
 
     }
     public void prePlay(int x, int y){
-        this.game.prePlay(x,y);
+        this.game.prePlay(y,x);
     }
     public String getCurrentPlayer(){
         return this.game.getCurrentTurn().toString();

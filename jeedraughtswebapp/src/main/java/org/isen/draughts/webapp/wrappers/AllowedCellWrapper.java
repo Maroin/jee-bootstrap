@@ -11,7 +11,7 @@ public class AllowedCellWrapper {
     private boolean isOk = false;
     public AllowedCellWrapper(int i, int index, List<Point> points) {
         points.forEach(point -> {
-            if(point.x == i && point.y == index){
+            if(point.y == i && point.x == index){
                 isOk = true;
                 return;
             }
