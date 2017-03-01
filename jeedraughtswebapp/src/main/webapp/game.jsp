@@ -12,7 +12,7 @@
         <div class="container">
             <a class="launch item"><i class="content icon"></i></a>
             <div class="title item">
-                <b>Puissance 4</b>
+                <b>Draughts</b>
             </div>
         </div>
     </div>
@@ -20,9 +20,9 @@
 
    <div id="header" class="header segment">
         <div class="container">
-            <h2 class="ui dividing header">Puissance 4</h2>
+            <h2 class="ui dividing header">Draughts</h2>
             <div class="introduction">
-                <p>Simple puissance4 app that makes use of JEE servlets</p>
+                <p>Simple draughts app that makes use of JEE servlets</p>
             </div>
             <c:if test="${game.winner != null}">
               <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>

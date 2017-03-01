@@ -79,8 +79,16 @@ public class DraughtsImpl implements Draughts {
         dest.setPlayer(orig.getPlayer());
         dest.setChipType(orig.getChipType());
         orig.setChipType(EMPTY);
-        orig.setPlayer(colour);
+        orig.setPlayer(null);
 
+        if(Math.abs( point.x - point1.x) == 2 ){
+            int xTaken  = point.x + ( point1.x - point.x)/2;
+            int yTaken  = point.y + ( point1.y - point.y)/2;
+            DraughtCell taken = this.board.get(xTaken).get(yTaken);
+            taken.setChipType(EMPTY);
+            taken.setPlayer(null);
+
+        }
 /*
         *//*
         White begins
@@ -212,9 +220,6 @@ public class DraughtsImpl implements Draughts {
     public boolean getColour() {
         return false;
     }
-    public java.util.List<Point> getForcedMove(Point origin, Player player){
-        return null;
-    }
     public java.util.List<Point> getFreeMove(Point origin, Player player){
         java.util.List<Point> points = new LinkedList<>();
         DraughtCell cell = board.get(origin.x).get(origin.y);
@@ -233,29 +238,14 @@ public class DraughtsImpl implements Draughts {
                 int x,y;
                 x= origin.x+1;
                 y= origin.y+allowedOffset;
-                System.out.println("hhh");
-                System.out.println(x);
-                System.out.println(y);
-                System.out.println(board.get(x).get(y).getChipType());
-                System.out.println(board.get(x).get(y).getPlayer());
-                System.out.println(board.get(x).get(y).getCellColor());
                 if(board.get(x).get(y).getChipType() == EMPTY) {
 
-                    System.out.println("OKKKKKK");
                     points.add(new Point(x,y));
                 }
 
                 x= origin.x-1;
                 y= origin.y+allowedOffset;
-
-                System.out.println("hhh");
-                System.out.println(x);
-                System.out.println(y);
-                System.out.println(board.get(x).get(y).getChipType());
-                System.out.println(board.get(x).get(y).getPlayer());
-                System.out.println(board.get(x).get(y).getCellColor());
                 if(board.get(x).get(y).getChipType() == EMPTY) {
-                    System.out.println("OKKKKKK");
                     points.add(new Point(x,y));
                 }
 
@@ -267,12 +257,61 @@ public class DraughtsImpl implements Draughts {
     }
 
 
-    public java.util.List<Point> getMovesRec(Point origin, Player player, List<List<DraughtCell>> board ){
-        return null;
+    public java.util.List<Point> getForcedMove(Point origin, Player player){
+        java.util.List<Point> points = new LinkedList<>();
+        DraughtCell cell = board.get(origin.x).get(origin.y);
+        if(cell.getChipType() != EMPTY && cell.getPlayer() == player) {
+
+            if (cell.getChipType() == CHIP) {
+                int x,y;
+                x= origin.x+1;
+                y= origin.y+1;
+                try {
+                    if (board.get(x).get(y).getChipType() != EMPTY && board.get(x).get(y).getPlayer() != player && board.get(x + 1).get(y + 1).getChipType() == EMPTY) {
+                        points.add(new Point(x+1, y+1));
+                    }
+                }catch (Exception e){}
+
+                x= origin.x-1;
+                y= origin.y-1;
+                try {
+                    if(board.get(x).get(y).getChipType() != EMPTY && board.get(x-1).get(y-1).getPlayer() != player && board.get(x - 1).get(y - 1).getChipType() == EMPTY) {
+                        points.add(new Point(x-1,y-1));
+                    }
+                }catch (Exception e){}
+
+
+                x= origin.x-1;
+                y= origin.y+1;
+                try {
+                    if(board.get(x).get(y).getChipType() != EMPTY && board.get(x).get(y).getPlayer() != player && board.get(x - 1).get(y + 1).getChipType() == EMPTY) {
+
+                        points.add(new Point(x-1,y+1));
+                    }
+                }catch (Exception e){ }
+
+
+                x= origin.x+1;
+                y= origin.y-1;
+                try {
+                    if(board.get(x).get(y).getChipType() != EMPTY && board.get(x).get(y).getPlayer() != player && board.get(x + 1).get(y - 1).getChipType() == EMPTY) {
+                        points.add(new Point(x+1,y-1));
+                    }
+                }catch (Exception e){ }
+
+
+            }else if(cell.getChipType() == DRAFT){
+
+            }
+        }
+        return points;
     };
     @Override
     public java.util.List<Point> getAllowedMoves(Point origin, Player player) {
-
+        List<Point> list = getForcedMove(origin,player);
+        if(list.size() != 0){
+            return list;
+        }
         return getFreeMove(origin,player);
     }
 /*

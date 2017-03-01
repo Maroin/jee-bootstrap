@@ -22,7 +22,7 @@
     <div class="ui fixed inverted main menu">
         <div class="container">
             <div class="title item">
-                <b>Puissance 4</b>
+                <b>Draughts</b>
             </div>
         </div>
     </div>
@@ -30,9 +30,9 @@
 
    <div id="header" class="header segment">
         <div class="container">
-            <h2 class="ui dividing header">Puissance 4</h2>
+            <h2 class="ui dividing header">Draughts</h2>
             <div class="introduction">
-                <p>Simple puissance4 app that makes use of JEE servlets</p>
+                <p>Simple Draughts app that makes use of JEE servlets</p>
             </div>
 
               <div ng-show="game.winner" id="winner" ng-class="{massive:true, circular:true, ui:true, red:game.winner=='RED', yellow:game.winner=='YELLOW', icon:true,  button:true}">WINS</div>
