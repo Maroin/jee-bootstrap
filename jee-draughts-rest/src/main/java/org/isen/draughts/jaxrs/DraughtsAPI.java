@@ -39,10 +39,4 @@ public class DraughtsAPI {
                 .build();
     }
 
-    @Path("{gameToken}")
-    public Object getGame(@PathParam("gameToken") String token) {
-        DraughtsAdapter game = dao.loadFromToken(token);
-        return rc.initResource(new DraughtsGameResource(game));
-    }
-
 }

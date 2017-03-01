@@ -1,5 +1,7 @@
-package org.isen.draughts.web;
+package org.isen.draughts.webapp;
 
+import java.awt.*;
+import java.io.Console;
 import java.io.IOException;
 
 import javax.inject.Inject;
@@ -13,7 +15,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-@WebServlet(urlPatterns = "/draughts")
+@WebServlet(urlPatterns = "/g/*")
 public class GameServlet extends HttpServlet {
 
     private static final long serialVersionUID = 4590295895653754427L;
@@ -34,21 +36,33 @@ public class GameServlet extends HttpServlet {
             throws IOException, ServletException {
 
         String token = getTokenFromRequest(request);
-
         if (StringUtils.isEmpty(token) || request.getParameter("reset") != null) {
             LOG.debug("Empty token, creating a new game");
             game.createNewGame();
             redirectToGameRoot(response, request);
         } else {
-            if (LOG.isDebugEnabled()) {
-                //LOG.debug("Found token " + game.getToken() + " in request");
-            }
             game.loadFromToken(token);
 
+
             String playCol = request.getParameter("playcol");
-            if (playCol != null) {
-                //game.play(Integer.parseInt(playCol));
+
+            String playRow = request.getParameter("playrow");
+
+            String preCol = request.getParameter("precol");
+
+            String preRow = request.getParameter("prerow");
+            if(preCol != null && preRow != null){
+
+                if (playCol != null && playRow != null ) {
+
+                    game.play(Integer.parseInt(preCol),Integer.parseInt(preRow),Integer.parseInt(playCol),Integer.parseInt(playRow));
+                }else{
+                    game.prePlay(Integer.parseInt(preCol), Integer.parseInt(preRow));
+
+                }
+                game.loadFromToken(token);
                 redirectToGameRoot(response, request);
+
             } else {
                 request.getRequestDispatcher("/game.jsp").include(request,
                         response);
@@ -60,8 +74,8 @@ public class GameServlet extends HttpServlet {
 
     private void redirectToGameRoot(HttpServletResponse response,
             HttpServletRequest request) throws IOException {
-     //   response.sendRedirect(request.getContextPath()
-     //           + request.getServletPath() + "/" + game.getToken());
+        response.sendRedirect(request.getContextPath()
+                + request.getServletPath() + "/" + game.getToken());
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {
