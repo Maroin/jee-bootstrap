@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 @Path("/")
 @Produces({ "application/json", "*/*" })
 @RequestScoped
-public class Puissance4API {
+public class DraughtsAPI {
 
     @Inject
     DraughtsDAO dao;
@@ -42,7 +42,7 @@ public class Puissance4API {
     @Path("{gameToken}")
     public Object getGame(@PathParam("gameToken") String token) {
         DraughtsAdapter game = dao.loadFromToken(token);
-        return rc.initResource(new Puissance4GameResource(game));
+        return rc.initResource(new DraughtsGameResource(game));
     }
 
 }

@@ -24,7 +24,7 @@ import org.isen.draughts.jpa.adapter.DraughtsAdapter;
 
 @Provider
 @Produces({"application/json","*/*"})
-public class Puissance4GameBodyWriter implements
+public class DraughtsGameBodyWriter implements
         MessageBodyWriter<DraughtsAdapter> {
 
     @Context

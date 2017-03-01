@@ -14,7 +14,7 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/semantic.min.css" />
    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
 </head>
-  <body id="example" class="site" ng-app="puissance4AngularApp" ng-controller="MainCtrl">
+  <body id="example" class="site" ng-app="DraughtsAngularApp" ng-controller="MainCtrl">
   <script type="text/javascript">
     var apiEndpoint = '${pageContext.request.contextPath}/api/';
   </script>

@@ -14,7 +14,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.isen.draughts.jpa.adapter.DraughtsAdapter;
 
-public class Puissance4GameResource {
+public class DraughtsGameResource {
 
 
     @Context
@@ -24,7 +24,7 @@ public class Puissance4GameResource {
 
     private DraughtsAdapter game;
 
-    public Puissance4GameResource(DraughtsAdapter game) {
+    public DraughtsGameResource(DraughtsAdapter game) {
         this.game = game;
     }
 

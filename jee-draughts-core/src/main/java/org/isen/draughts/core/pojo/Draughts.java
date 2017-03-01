@@ -31,6 +31,7 @@ public interface Draughts {
      * @return
      */
      Player getWinner();
+
      ArrayList<Player> getBoard() ;
 
     /**

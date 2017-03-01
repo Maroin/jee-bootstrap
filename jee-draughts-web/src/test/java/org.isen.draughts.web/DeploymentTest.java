@@ -14,7 +14,6 @@ public class DeploymentTest extends JettyHarness {
     public void itCanBrowseIndex() throws Exception {
 
         String index = get(getBaseUri());
-        System.out.println(index);
         assertTrue(index.contains("Hello"));
     }
 }
