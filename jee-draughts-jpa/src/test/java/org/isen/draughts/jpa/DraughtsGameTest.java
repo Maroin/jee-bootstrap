@@ -190,27 +190,21 @@ public class DraughtsGameTest {
 
                                             System.out.println("*****************3RD PLAY WHITE EAT******************");
 
-        game.play(initialWhite, initialBlack, WHITE);
 
         Assertions.assertThat(dest).isNotNull();
-        System.out.println("true");
 
         Assertions.assertThat(dest).contains(initialBlack);
-        System.out.println("true");
 
 
-        game.play(initialWhite, initialBlack, WHITE);
+        game.play(middleWhite, initialBlack, WHITE);
 
         Assertions.assertThat(game.getDraughtCell(initialBlack).getPlayer()).isEqualTo(WHITE);
-        System.out.println("true");
 
 
-        Assertions.assertThat(game.getDraughtCell(destBlack).getChipType()).isEqualTo(EMPTY);
+        Assertions.assertThat(game.getDraughtCell(destBlack).getChipType()).isEqualTo(CHIP);
 
-        System.out.println("true");
 
         Assertions.assertThat(game.getDraughtCell(initialWhite).getChipType()).isEqualTo(EMPTY);
-        System.out.println("true");
 
     }
 

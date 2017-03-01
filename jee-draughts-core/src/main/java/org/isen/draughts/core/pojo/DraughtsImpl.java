@@ -91,11 +91,15 @@ public class DraughtsImpl implements Draughts {
 
 
                     if (pointList.size() != 0) {
+                        System.out.println("There is possibilities");
+
                         if (pointList.contains(point1)) {
                         /*
                         there is a list of possibilities and among them, point1 is
                         so the player can move his chip on Point1
                          */
+                            System.out.println("Destination x: "+point1.x+" y: "+point1.y+" contained");
+
                             for (List<DraughtCell> boardA : board) {
                                 for (DraughtCell draughtCells : boardA) {
 
@@ -103,22 +107,28 @@ public class DraughtsImpl implements Draughts {
                                     /*
                                     empty the initial position
                                      */
+                                        System.out.println("Emptying initial white ");
+
 
                                         draughtCells.setChipType(EMPTY);
                                     }
 
-                                    if (draughtCells == getDraughtCell(point1) &&
-                                            getDraughtCell(point1).getCellColor() == CellColor.BLACK) {
-                                    /*
-                                    remove this draughtCell
-                                     */
-                                        draughtCells.setChipType(EMPTY);
-                                    }
+                                   // if (draughtCells == getDraughtCell(new Point) ) {
+                                   // /*
+                                   // remove this draughtCell
+                                   //  */
+                                   //
+                                   //     System.out.println("Empty middle spot ");
+                                   //
+                                   //     draughtCells.setChipType(EMPTY);
+                                   // }
 
                                     if (draughtCells == getDraughtCell(point1)) {
                                     /*
                                     fill the new position
                                      */
+                                        System.out.println("Filling for a white destination ");
+
                                         draughtCells.setCellColor(CellColor.WHITE);
                                         draughtCells.setPlayer(colour);
                                         draughtCells.setChipType(CHIP);
@@ -154,19 +164,22 @@ public class DraughtsImpl implements Draughts {
 
                                     if (draughtCells == getDraughtCell(point)) {
                                         draughtCells.setChipType(EMPTY);
+                                        System.out.println("Emptying initial black ");
+
                                     }
-                                    if (draughtCells == getDraughtCell(point1) &&
-                                            getDraughtCell(point1).getCellColor() == CellColor.WHITE) {
-                                    /*
-                                    remove this draughtCell
-                                     */
-                                        draughtCells.setChipType(EMPTY);
-                                    }
+                                    //if (draughtCells == getDraughtCell(point1)) {
+                                    ///*
+                                    //remove this draughtCell
+                                    // */
+                                    //    draughtCells.setChipType(EMPTY);
+                                    //}
 
                                     if (draughtCells == getDraughtCell(point1)) {
                                     /*
                                     fill the new position
                                      */
+                                        System.out.println("Filling for a  black destination ");
+
                                         draughtCells.setCellColor(CellColor.BLACK);
                                         draughtCells.setPlayer(colour);
                                         draughtCells.setChipType(CHIP);
@@ -208,9 +221,8 @@ public class DraughtsImpl implements Draughts {
                 "Originally from => x :"+origin.x + " y :"+origin.y);
 
         if (upLeft !=null){
-            if (getDraughtCell(upLeft)!=null){
 
-                System.out.println("upLeft =  x : "+upLeft.x+" y : " + upLeft.y);
+            if (getDraughtCell(upLeft)!=null){
 
                 if (getDraughtCell(upLeft).getChipType() == EMPTY){
 
@@ -255,9 +267,9 @@ public class DraughtsImpl implements Draughts {
                     System.out.println("upRight chip is empty ");
 
                     listOfPoints.add(upRight);
-                } else if (getDraughtCell(upLeft).getPlayer() != player) {
+                } else if (getDraughtCell(upRight).getPlayer() != player) {
 
-                    System.out.println("upLeft chip is ennemy ");
+                    System.out.println("upRight chip is ennemy ");
 
                     if (getDraughtCell(nextPoint(upRight, 1)).getChipType() == EMPTY) {
                         System.out.println("You can eat it");
@@ -278,23 +290,34 @@ public class DraughtsImpl implements Draughts {
             if (getDraughtCell(downLeft) != null) {
 
 
-                System.out.println("Player +"+player.toString());
-                System.out.println("downLeft =  x : "+downLeft.x+" y : " + downLeft.y);
+                System.out.println("Player +" + player.toString());
+                System.out.println("downLeft =  x : " + downLeft.x + " y : " + downLeft.y);
 
-                if (getDraughtCell(downLeft).getPlayer() != player) {
+                if (getDraughtCell(downLeft).getChipType() == EMPTY) {
 
-                    System.out.println("downLet chip is ennemy ");
+                    System.out.println("downLeft chip is empty ");
 
-                    if (getDraughtCell(nextPoint(downLeft, 3)).getChipType() == EMPTY) {
-                        System.out.println("You can eat it");
+                    listOfPoints.add(downLeft);
+                }else {
+                    if (getDraughtCell(downLeft).getPlayer() != null) {
 
-                        listOfPoints.add(nextPoint(downLeft, 3));
-                    }
+
+                        if (getDraughtCell(downLeft).getPlayer() != player) {
+
+                            System.out.println("downLet chip is ennemy " + getDraughtCell(downLeft).getPlayer() + "  " +
+                                    getDraughtCell(downLeft).getChipType() + "    " + getDraughtCell(downLeft).getCellColor());
+
+                            if (getDraughtCell(nextPoint(downLeft, 3)).getChipType() == EMPTY) {
+                                System.out.println("You can eat it");
+
+                                listOfPoints.add(nextPoint(downLeft, 3));
+                            }
+                        } else {
+                            System.out.println("Neighbor");
+                        }
                 }
-                else {
-                    System.out.println("Neighbor");
-                }
 
+            }
 
             }
         }
@@ -302,21 +325,31 @@ public class DraughtsImpl implements Draughts {
         if (downRight!=null){
             if (getDraughtCell(downRight)!=null) {
 
-                System.out.println("Player +"+player.toString());
-                System.out.println("downRight =  x : "+downRight.x+" y : " + downRight.y);
+                System.out.println("Player +" + player.toString());
+                System.out.println("downRight =  x : " + downRight.x + " y : " + downRight.y);
+                if (getDraughtCell(downRight).getChipType() == EMPTY) {
 
-                if (getDraughtCell(downRight).getPlayer() != player) {
+                    System.out.println("downRight chip is empty ");
 
-                    System.out.println("downRight chip is ennemy ");
-
-                    if (getDraughtCell(nextPoint(downRight, 4)).getChipType() == EMPTY) {
-                        System.out.println("You can eat it");
-
-                        listOfPoints.add(nextPoint(downRight, 4));
-                    }
+                    listOfPoints.add(downRight);
                 } else {
-                    System.out.println("Neighbor");
 
+                    if (getDraughtCell(downRight).getPlayer() != null) {
+
+                        if (getDraughtCell(downRight).getPlayer() != player) {
+
+                            System.out.println("downRight chip is ennemy ");
+
+                            if (getDraughtCell(nextPoint(downRight, 4)).getChipType() == EMPTY) {
+                                System.out.println("You can eat it");
+
+                                listOfPoints.add(nextPoint(downRight, 4));
+                            }
+                        } else {
+                            System.out.println("Neighbor");
+
+                        }
+                    }
                 }
             }
         }
@@ -364,7 +397,7 @@ public class DraughtsImpl implements Draughts {
 
     public DraughtCell getDraughtCell(Point point) {
 
-        if (0 <= point.x || point.x <10 && point.y>=0 || point.y<10 ){
+        if (0 <= point.x && point.x <10 && point.y>=0 && point.y<10 ){
             return board.get(point.x).get(point.y);
         } else {
             return null;
