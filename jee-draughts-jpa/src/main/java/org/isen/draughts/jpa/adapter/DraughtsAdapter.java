@@ -44,16 +44,8 @@ public class DraughtsAdapter implements Draughts{
         this.game = game;
         this.coreGame = new DraughtsImpl();
 
-        System.out.println("ctor");
         for (DraughtsMoveImpl turn : game.getMoves()) {
 
-            System.out.println("Turn");
-
-            System.out.println(new Point(turn.getOrigineX(),turn.getOrigineY()));
-
-            System.out.println(new Point(turn.getDestX(),turn.getDestY()));
-
-            System.out.println(turn.getPlayer());
 
             this.coreGame.play(new Point(turn.getOrigineX(),turn.getOrigineY()),
                     new Point(turn.getDestX(),turn.getDestY())
@@ -87,21 +79,15 @@ public class DraughtsAdapter implements Draughts{
     @Override
     public void play(Point point, Point point1, Player colour) {
 
-        System.out.println("ok");
-        System.out.println(point.toString() + point1.toString() +colour);
         coreGame.play(point,point1,colour);
 
-        System.out.println("ok");
         this.game.getMoves().add(new DraughtsMoveImpl(colour,point,point1));
 
-        System.out.println("ok");
         switchTurn();
-
-        System.out.println("ok");
 
         dao.saveEntry(game);
 
-        System.out.println("ok");
+
 
     }
 
