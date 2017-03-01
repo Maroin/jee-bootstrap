@@ -18,7 +18,7 @@ import static org.isen.draughts.core.enums.Player.WHITE;
  */
 public class DraughtsImpl implements Draughts {
 
-    public final static int COLUMNS_NUMBER = 8;
+    public final static int COLUMNS_NUMBER = 10;
 
     java.util.List<java.util.List<DraughtCell>> board = new ArrayList<>(COLUMNS_NUMBER);
 
@@ -44,7 +44,7 @@ public class DraughtsImpl implements Draughts {
         }
     }
 
-    
+
     public DraughtsImpl(){
         initEmptyGrid();
 
@@ -77,105 +77,113 @@ public class DraughtsImpl implements Draughts {
         White begins
          */
 
-        if (point != null) {
+        if (point != null && point1!=null) {
 
-            if (getDraughtCell(point).getPlayer() == WHITE) {
+            if (getDraughtCell(point) != null && getDraughtCell(point1)!=null)  {
+
+
+                if (getDraughtCell(point).getPlayer() == WHITE) {
                 /*
                 chip belongs to the white
                  */
-                List<Point> pointList = getAllowedMoves(point, colour);
 
-                if (pointList.size() != 0) {
-                    if (pointList.contains(point1)) {
+                    List<Point> pointList = getAllowedMoves(point, colour);
+
+
+                    if (pointList.size() != 0) {
+                        if (pointList.contains(point1)) {
                         /*
                         there is a list of possibilities and among them, point1 is
                         so the player can move his chip on Point1
                          */
-                        for (List<DraughtCell> boardA : board) {
-                            for (DraughtCell draughtCells : boardA) {
+                            for (List<DraughtCell> boardA : board) {
+                                for (DraughtCell draughtCells : boardA) {
 
-                                if (draughtCells == getDraughtCell(point)) {
+                                    if (draughtCells == getDraughtCell(point)) {
                                     /*
                                     empty the initial position
                                      */
 
-                                    draughtCells.setChipType(EMPTY);
-                                }
+                                        draughtCells.setChipType(EMPTY);
+                                    }
 
-                                if (draughtCells == getDraughtCell(point1) &&
-                                        getDraughtCell(point1).getCellColor() == CellColor.BLACK) {
+                                    if (draughtCells == getDraughtCell(point1) &&
+                                            getDraughtCell(point1).getCellColor() == CellColor.BLACK) {
                                     /*
                                     remove this draughtCell
                                      */
-                                    draughtCells.setChipType(EMPTY);
-                                }
+                                        draughtCells.setChipType(EMPTY);
+                                    }
 
-                                if (draughtCells == getDraughtCell(point1)) {
+                                    if (draughtCells == getDraughtCell(point1)) {
                                     /*
                                     fill the new position
                                      */
-                                    draughtCells.setCellColor(CellColor.WHITE);
-                                    draughtCells.setPlayer(colour);
-                                    draughtCells.setChipType(CHIP);
+                                        draughtCells.setCellColor(CellColor.WHITE);
+                                        draughtCells.setPlayer(colour);
+                                        draughtCells.setChipType(CHIP);
+                                    }
+
+
                                 }
-
-
                             }
-                        }
 
-                    }
-                } else {
+                        }
+                    } else {
                     /*
                     select another Point
                      */
+                    }
                 }
-            }
 
 
-            if (getDraughtCell(point).getPlayer() == BLACK) {
+                if (getDraughtCell(point).getPlayer() == BLACK) {
                 /*
                 chip belongs to the black
                  */
-                List<Point> pointList = getAllowedMoves(point, colour);
+                    List<Point> pointList = getAllowedMoves(point, colour);
 
-                if (pointList.size() != 0) {
-                    if (pointList.contains(point1)) {
+                    if (pointList.size() != 0) {
+                        if (pointList.contains(point1)) {
                         /*
                         there is a list of possibilities and among them, point1 is
                         so the player can move his chip on Point1
                          */
-                        for (List<DraughtCell> boardA : board) {
-                            for (DraughtCell draughtCells : boardA) {
+                            for (List<DraughtCell> boardA : board) {
+                                for (DraughtCell draughtCells : boardA) {
 
-                                if (draughtCells == getDraughtCell(point)) {
-                                    draughtCells.setChipType(EMPTY);
-                                }
-                                if (draughtCells == getDraughtCell(point1) &&
-                                        getDraughtCell(point1).getCellColor() == CellColor.WHITE) {
+                                    if (draughtCells == getDraughtCell(point)) {
+                                        draughtCells.setChipType(EMPTY);
+                                    }
+                                    if (draughtCells == getDraughtCell(point1) &&
+                                            getDraughtCell(point1).getCellColor() == CellColor.WHITE) {
                                     /*
                                     remove this draughtCell
                                      */
-                                    draughtCells.setChipType(EMPTY);
-                                }
+                                        draughtCells.setChipType(EMPTY);
+                                    }
 
-                                if (draughtCells == getDraughtCell(point1)) {
+                                    if (draughtCells == getDraughtCell(point1)) {
                                     /*
                                     fill the new position
                                      */
-                                    draughtCells.setCellColor(CellColor.BLACK);
-                                    draughtCells.setPlayer(colour);
-                                    draughtCells.setChipType(CHIP);
+                                        draughtCells.setCellColor(CellColor.BLACK);
+                                        draughtCells.setPlayer(colour);
+                                        draughtCells.setChipType(CHIP);
+                                    }
                                 }
                             }
-                        }
 
-                    }
-                } else {
+                        }
+                    } else {
                     /*
                     select another Point
                      */
+                    }
                 }
             }
+
+
         }
     }
 
@@ -197,34 +205,77 @@ public class DraughtsImpl implements Draughts {
         upR, upL, dL, dR not empty and nextPoint empty, add to the list.
          */
 
-        if (getDraughtCell(upLeft).getChipType() == EMPTY){
-            listOfPoints.add(upLeft);
-        } else {
-            if (getDraughtCell(upLeft).getPlayer() != player){
-                if (getDraughtCell(nextPoint(upLeft,2)).getChipType() == EMPTY){
-                    listOfPoints.add(nextPoint(upLeft,2));
+        if (upLeft !=null){
+            if (getDraughtCell(upLeft)!=null){
+
+                System.out.println("Player +"+player.toString());
+                System.out.println("upLeft =  x : "+upLeft.x+" y : " + upLeft.y);
+
+                if (getDraughtCell(upLeft).getChipType() == EMPTY){
+
+                    System.out.println("upLeft chip is empty ");
+
+                    listOfPoints.add(upLeft);
+                } else {
+                    if (getDraughtCell(upLeft).getPlayer() != player){
+
+                        System.out.println("upLeft chip is ennemy ");
+
+                        if (nextPoint(upLeft,2)!=null){
+                            if (getDraughtCell(nextPoint(upLeft,2))!=null) {
+                                if (getDraughtCell(nextPoint(upLeft,2)).getChipType()!=null ) {
+                                    if (getDraughtCell(nextPoint(upLeft, 2)).getChipType() == EMPTY) {
+
+                                        listOfPoints.add(nextPoint(upLeft, 2));
+                                        System.out.println("notTrue");
+                                    }
+                                }
+                                }
+                            }
+                        }
+                    }
                 }
-            }
         }
-        if (getDraughtCell(upRight).getChipType() == EMPTY){
-            listOfPoints.add(upRight);
-        } else
-            if (getDraughtCell(upLeft).getPlayer() != player){
-                if (getDraughtCell(nextPoint(upRight,1)).getChipType() == EMPTY){
-                    listOfPoints.add(nextPoint(upRight,1));
+
+        if (upRight !=null) {
+
+            if (getDraughtCell(upRight) != null) {
+
+                if (getDraughtCell(upRight).getChipType() == EMPTY) {
+                    listOfPoints.add(upRight);
+                } else if (getDraughtCell(upLeft).getPlayer() != player) {
+                    if (getDraughtCell(nextPoint(upRight, 1)).getChipType() == EMPTY) {
+                        listOfPoints.add(nextPoint(upRight, 1));
+                    }
                 }
-        }
-        if (getDraughtCell(downLeft).getPlayer() != player){
-            if (getDraughtCell(nextPoint(downLeft,3)).getChipType() == EMPTY){
-                listOfPoints.add(nextPoint(downLeft,3));
             }
         }
 
-        if (getDraughtCell(downRight).getPlayer() != player){
-            if (getDraughtCell(nextPoint(downRight,4)).getChipType() == EMPTY){
-                listOfPoints.add(nextPoint(downRight,4));
+        if (downLeft !=null) {
+
+
+            if (getDraughtCell(downLeft) != null) {
+
+                if (getDraughtCell(downLeft).getPlayer() != player) {
+                    if (getDraughtCell(nextPoint(downLeft, 3)).getChipType() == EMPTY) {
+                        listOfPoints.add(nextPoint(downLeft, 3));
+                    }
+                }
+
             }
         }
+
+        if (downRight!=null){
+            if (getDraughtCell(downRight)!=null) {
+
+                if (getDraughtCell(downRight).getPlayer() != player) {
+                    if (getDraughtCell(nextPoint(downRight, 4)).getChipType() == EMPTY) {
+                        listOfPoints.add(nextPoint(downRight, 4));
+                    }
+                }
+            }
+        }
+
 
 
         return listOfPoints;
@@ -268,7 +319,11 @@ public class DraughtsImpl implements Draughts {
 
     public DraughtCell getDraughtCell(Point point) {
 
-        return board.get(point.x).get(point.y);
+        if (0 <= point.x || point.x <10 && point.y>=0 || point.y<10 ){
+            return board.get(point.x).get(point.y);
+        } else {
+            return null;
+        }
     }
 
     @Override
