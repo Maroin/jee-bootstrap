@@ -1,6 +1,6 @@
 # JEE Draughts
 
-To launch the web app go to jee-draughts-parents folder and run the following commands :
+To launch the web app go to jee-draughts parent folder and run the following commands :
 
 $ mvn clean install \
 $ cd jee-draughts-web \
